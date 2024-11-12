@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Information Form</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ruslan+Display&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ruslan+Display&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <style>
-        html{
-            height:100%;
-            margin:0;
-            padding:0;
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
+
         body {
-            
+
             height: 100%;
             background-image: url("meshnew.png");
             display: flex;
@@ -27,109 +33,181 @@
             background-size: cover;
 
         }
-        .patientform{
+
+        .patientform {
             backdrop-filter: blur(40px);
-            min-height:40em;
-            width:29em;
+            min-height: 40em;
+            width: 29em;
             border-radius: 10px;
-            box-shadow:1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
         }
 
-        h2{
+        h2 {
             margin: 1px;
             text-align: center;
-            padding:1em;
-            font-family:"Montserrat Alternates", sans-serif;
+            padding: 1em;
+            font-family: "Montserrat Alternates", sans-serif;
             color: white;
             font-size: 35px;
         }
-        form{
+
+        form {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size:20px;
+            font-size: 20px;
             font-weight: 800;
             font-family: "Poppins";
         }
-        label{
+
+        label {
             font-weight: 500;
         }
-        select{
-            height:2.4em;
+
+        select {
+            height: 2.4em;
             margin-top: 0.5em;
-            font-family:"Montserrat Alternates", sans-serif;
+            font-family: "Montserrat Alternates", sans-serif;
             margin-bottom: 2em;
-            padding:4px 50px;
+            padding: 4px 50px;
             border-radius: 7px;
             outline: none;
             border-color: transparent;
-            background-color: rgba(0, 0, 0,0.2);
-            color:white;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
         }
-        select:hover{
+
+        select:hover {
             transform: scale(1.06);
             transition: all 0.5s ease-in;
         }
-        input{
-            height:1.8em;
+
+        input {
+            height: 1.8em;
             margin-top: 0.5em;
-            font-family:"Montserrat Alternates", sans-serif;
+            font-family: "Montserrat Alternates", sans-serif;
             margin-bottom: 2em;
-            padding:4px 50px;
+            padding: 4px 50px;
             border-radius: 7px;
             outline: none;
             border-color: transparent;
-            background-color: rgba(0, 0, 0,0.2);
-            color:white;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
         }
-        input:hover{
+
+        input:hover {
             transform: scale(1.06);
             transition: all 0.5s ease-in;
         }
-        #submit{
+
+        #submit {
             margin-top: 0;
             margin-bottom: 40px;
             font-weight: 800;
-            height:3em;
-            color:white;
+            height: 3em;
+            color: white;
             font-size: 20px;
-            color:white;
+            color: white;
             border-radius: 20px;
             background-color: rgba(209, 62, 101, 0.685);
         }
-        #date_in{
-            color:white;
+
+        #date_in {
+            color: white;
             font-size: 15px;
+        }
+        #admit_box{
+            display: none;
         }
     </style>
 
 </head>
+
 <body>
     <div class="patientform">
         <h2>Visitor Form</h2>
-        <form action="new_visitor.php" method="POST">
-            <label for="patient_name">Patient Name :</label>
-            <input type="text" id="patient_name" name="patient_name" required><br>
 
-            <label for="badge_id">Badge ID :</label>
-            <select name="badge_id" id="badge_id" required>
+        <!-- form for fetching Admit_id from Patient_id -->
+        <form action="v1.php" method="POST" id="form1">
+            <label for="patient_id">Patient ID :</label>
+            <input type="numeric" id="patient_id" name="patient_id" required>
+            <input type="submit" value="Check">
+        </form>
+
+        <!-- form for making entry of visit in visit database -->
+        <form action="v2.php" method="post" id="form2">
+            <label for="admit">Admit ID : </label>
+            <input type="numeric" id="admit" name="admit">
+
+            <div id="admit_box">Admit ID : </div>
+            <!-- <label for="admit_id">Admit ID :</label>
+            <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
+
+
+            <label for="badge_select">Badge ID :</label>
+            <select name="badge_select" id="badge_select" required>
                 <option value="">Select Badge ID</option>
-            </select><br>
-
-            <label for="date-in">Date in :</label>
-            <input type="date" name="date_in" id="date_in"><br>
-
-            <label for="admit_id">Admit ID :</label>
-            <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required><br>
-
+            </select>
 
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
 
+    <div id="message">
+
+    </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        $(document).ready(function () {
+            // This line means: once the HTML page is fully loaded, the function inside will run
+
+            // to fetch admit id from patient id and get corresponding badges
+            $('#form1').on('submit', function (e) {
+                e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
+                $.ajax({
+                    url: 'v1.php'   , // The URL where the data will be sent (in this case, 'a.php')
+                    type: 'POST', // The method used to send data (POST is typically used for form submissions)
+                    data: $(this).serialize(), // Takes all the form data and formats it for sending
+                    success: function (response) {
+                        // This function runs if the request is successful
+                        $('#admit_box').html(response); // Shows the server's response message in the div with id 'message'
+                        $('#admit').val($('#admit_id').html());
+                        $('#badge_select').html(response);
+                    },
+                    error: function () {
+                        // This function runs if there’s an error with the request
+                        $('#message').html("Error: Could not process the button submission."); // Shows an error message
+                    }
+                });
+            });
+
+            
+            // code for submitting main form
+            $('#form2').on('submit', function (e) {
+                e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
+                $.ajax({
+                    url: 'v2.php', // The URL where the data will be sent (in this case, 'a.php')
+                    type: 'POST', // The method used to send data (POST is typically used for form submissions)
+                    data: $(this).serialize(), // Takes all the form data and formats it for sending
+                    success: function (response) {
+                        // This function runs if the request is successful
+                        // Shows the server's response message in the div with id 'message'
+                        $('#message').html(response);
+                    },
+                    error: function () {
+                        // This function runs if there’s an error with the request
+                        $('#message').html("Error: Could not process the form submission."); // Shows an error message
+                    }
+                });
+            });
+
+        });
     </script>
 </body>
+
 </html>

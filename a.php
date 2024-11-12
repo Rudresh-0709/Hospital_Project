@@ -10,6 +10,8 @@
     $password = "maria";
     $dbname = "hospital";
 
+    $flag = 0;    // admission not yet succesfull
+
     // create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     // mysqli is the MySQL Improved extension, which provides an interface for interacting with MySQL databases in PHP.
@@ -23,6 +25,7 @@
         $date_in = $_POST['date_in'];
     }
 
+
     try{
     $stmt = $conn->prepare("INSERT INTO admit (patient_id, date_in) values (?,?)");
     // prepare statement used to insert the form data into the user_details table
@@ -34,16 +37,15 @@
     if($stmt->execute()){
         //  It inserts the provided user data into the database,
         //  executing the SQL query with the actual values instead of the placeholders(?).
-        echo "<div class=\"messagebox\">";
+        echo "<div class=\"valid\">";
         echo "<div> Entry Succesfull </div>";
+        $flag = 1;    // admission succesfull, now can run badge allocation code
     }
     // else{
     //     echo "Error : " . $stmt->error;
     // }
     // without try catch ... the code didnt even reach here,, so else block didnt make any sense..no use
 
-    $stmt->close();
-    $conn->close();
 }
 catch(mysqli_sql_exception $e){
     // if foreign key error
@@ -53,6 +55,50 @@ catch(mysqli_sql_exception $e){
     }
     else{
         // for generic errors
-        echo "<div class=\"invalid\">Error!</div>";
+        echo "<div class=\"invalid\">Error in admitting !</div>";
+    }
+}
+
+
+// code to allocate 3 visiting badges to the admitted patient
+if($flag){
+    try{
+        $stmt = $conn->prepare("SELECT admit_id, status from admit where patient_id = ? and status = 1");
+        $stmt->bind_param("i", $pid);
+        $stmt->execute();
+
+        $result = $stmt->get_result()->fetch_assoc();
+        $aid = $result['admit_id'];
+        $stmt->close();
+
+        $temp = 0;
+        for($i = 0; $i < 3; $i++){
+            $stmt1 = $conn->prepare("INSERT INTO badges (admit_id) values (?)");
+            $stmt1->bind_param("i", $aid);
+
+            if($stmt1->execute()){
+                $temp = 1;
+            }
+            else{
+                $temp = 0;
+                break;
+            }
+        }
+        if($temp == 1){
+            //  It inserts the provided user data into the database,
+            //  executing the SQL query with the actual values instead of the placeholders(?).
+            echo "<div class=\"valid\">";
+            echo "3 visiting badges allocated </div>";
+        }
+        // else{
+        //     echo "Error : " . $stmt->error;
+        // }
+        // without try catch ... the code didnt even reach here,, so else block didnt make any sense..no use
+
+        $stmt1->close();
+        $conn->close();
+    }
+    catch(mysqli_sql_exception $e){
+        echo "<div class=\"invalid\">Error in badge allocation! $e</div>";
     }
 }
