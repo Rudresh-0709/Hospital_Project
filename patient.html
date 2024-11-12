@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,14 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ruslan+Display&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ruslan+Display&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <style>
         html{
             overflow-y: hidden;
@@ -20,6 +25,7 @@
             margin:0;
             padding:0;
         }
+
         body {
             height: 100%;
             background-image: url("https://products.ls.graphics/mesh-gradients/images/01.-Royal-Heath.jpg");
@@ -36,29 +42,31 @@
             height:fit-content;
             width:29em;
             border-radius: 10px;
-            box-shadow:1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
         }
 
-        h2{
+        h2 {
             margin: 1px;
             text-align: center;
-            padding:1em;
-            font-family:"Montserrat Alternates", sans-serif;
+            padding: 1em;
+            font-family: "Montserrat Alternates", sans-serif;
             color: white;
             font-size: 35px;
             text-shadow: 3px 3px 2px rgba(0, 166, 255, 0.522);
         }
-        form{
+
+        form {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size:20px;
+            font-size: 20px;
             font-weight: 800;
             font-family: "Poppins";
         }
-        label{
+
+        label {
             font-weight: 500;
             text-shadow: 2px 2px 2px rgba(0, 166, 255, 0.522);
         }
@@ -70,8 +78,8 @@
             border-radius: 7px;
             outline: none;
             border-color: transparent;
-            background-color: rgba(0, 0, 0,0.2);
-            color:white;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
         }
         
         #submit{
@@ -92,8 +100,9 @@
             background-color: rgba(0, 134, 171, 0.895); /* Change color on hover */
             box-shadow:1px 1px 10px 1px rgba(81, 178, 216, 0.615);
         }
-        #date_in{
-            color:white;
+
+        #date_in {
+            color: white;
             font-size: 15px;
         }
         i{
@@ -112,10 +121,11 @@
     </style>
 
 </head>
+
 <body>
     <div class="patientform">
-        <h2>Patient Form</h2>
-        <form action="new_patient.php" method="POST">
+        <h2>Patient Admission Form</h2>
+        <form action="patient.php" method="POST" id="patientForm">
             <label for="patient_name">Patient Name:</label>
                 
             <div class="labeli">
@@ -133,7 +143,44 @@
         </form>
     </div>
 
+    <div id="message">
+        <!-- error code will come here from patient.php via ajax-->
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        $(document).ready(function () {
+
+            // This line means: once the HTML page is fully loaded, the function inside will run
+            $('#patientForm').on('submit', function (e) {
+                // form validation
+                name = $('#patient_name').val();
+                patt = /^[A-Za-z\s'-]{2,}$/;
+
+                if (!patt.test(name.trim())) {
+                    alert("Please enter valid name");
+                }
+
+
+                e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
+
+                $.ajax({
+                    url: 'patient.php', // The URL where the data will be sent (in this case, 'a.php')
+                    type: 'POST', // The method used to send data (POST is typically used for form submissions)
+                    data: $(this).serialize(), // Takes all the form data and formats it for sending
+                    success: function (response) {
+                        // This function runs if the request is successful
+                        $('#message').html(response); // Shows the server's response message in the div with id 'message'
+                    },
+                    error: function () {
+                        // This function runs if there’s an error with the request
+                        $('#message').html("Error: Could not process the form submission."); // Shows an error message
+                    }
+                });
+            });
+        });
     </script>
 </body>
+
 </html>

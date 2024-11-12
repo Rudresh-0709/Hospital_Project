@@ -4,7 +4,9 @@
   This shows the Need for try and catch as it catches such error and provides the steps that the program should execute(handling) 
   Thus it helps to not terminate the code and just display the error-->
 
-<?php
+  <?php
+
+    // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT)       // -- helps catch all possible error
     $servername = "localhost";
     $username = "root";
     $password = "maria";
@@ -19,23 +21,24 @@
         die("connection Failed : " . $conn->connect_error);
     }
     else{
-        $pid = $_POST['patient_id'];
-        $date_in = $_POST['date_in'];
+        $pname = $_POST['patient_name'];
+        $patient_aadhar = $_POST['patient_aadhar'];
     }
 
     try{
-    $stmt = $conn->prepare("INSERT INTO admit (patient_id, date_in) values (?,?)");
+    $stmt = $conn->prepare("INSERT INTO patient (name, aadhar) values (?,?)");
     // prepare statement used to insert the form data into the user_details table
 
-    $stmt->bind_param("ss", $pid, $date_in);
+    $stmt->bind_param("ss", $pname, $patient_aadhar);
     //  This ensures that the data is properly escaped, preventing SQL injection attacks.
     // "ssss" indicates all parameters are strings.
 
     if($stmt->execute()){
         //  It inserts the provided user data into the database,
         //  executing the SQL query with the actual values instead of the placeholders(?).
-        echo "<div class=\"messagebox\">";
-        echo "<div> Entry Succesfull </div>";
+        echo "<div class=\"valid\"> Entry Succesfull </div>";
+    }
+    else{
     }
     // else{
     //     echo "Error : " . $stmt->error;
@@ -46,13 +49,12 @@
     $conn->close();
 }
 catch(mysqli_sql_exception $e){
-    // if foreign key error
-    if($e->getCode() == 1452){
-        echo "<div class=\"invalid\">No past Patient record found. Kindly register the new patient</div>";
-        echo "<a href=\"patient_page.html\"><button style=\"background-color:beige\">Register</button></a>";
+    if($e->getCode() == 1062){
+        echo "<div class=\"invalid\"> Aadhar Already registered. New patient cannot be made with same aadhar id</div>";
     }
     else{
-        // for generic errors
-        echo "<div class=\"invalid\">Error!</div>";
+        echo "<div class=\"invalid\"> Error!  $e </div>";
+        echo $e->getCode();    // helps to get error code so i can handle them accordingly
     }
+    
 }
