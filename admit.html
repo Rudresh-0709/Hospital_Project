@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Information Form</title>
+    <style>
+        html{
+            height:100%;
+        }
+        body {
+            height: 100%;
+            background-image: url("https://products.ls.graphics/mesh-gradients/images/16.-Medium-Purple_1.jpg");
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .patientform{
+            height:40em;
+            width:29em;
+            border-radius: 10px;
+            box-shadow:1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+        }
+
+        h2{
+            text-align: center;
+            padding:1em;
+            margin-bottom:0em;
+            font-family:"Montserrat Alternates", sans-serif;
+            color: chocolate;
+            font-size: 35px;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: chocolate;
+            font-size:20px;
+            font-weight: 800;
+        }
+
+        input{
+            font-family:"Montserrat Alternates", sans-serif;
+            margin-bottom: 2em;
+            padding:4px 50px;
+            border-radius: 7px;
+            outline: none;
+            border-color: transparent;
+            background-color: rgba(0, 0, 0,0.2);
+            color:brown;
+        }
+        input:hover{
+            transform: scale(1.06);
+            transition: all 0.5s ease-in;
+        }
+
+        #submit{
+            padding:10px 60px;
+            color:white;
+            font-size: 15px;
+        }
+        #date_in{
+            color:white;
+            font-size: 15px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="patientform">
+        <h2>Patient Admission Form</h2><br>
+        <form action="a.php" method="POST">
+            <label for="patient_id">Patient ID:</label><br>
+            <input type="text" id="patient_id" name="patient_id" required><br>
+
+            <label for="date-in">Date in :</label><br>
+            <input type="date" name="date_in" id="date_in"><br>
+
+            <input type="submit" value="Submit" id="submit">
+        </form>
+    </div>
+
+    <script>
+    </script>
+</body>
+</html>
