@@ -5,14 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Information Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ruslan+Display&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <style>
         html {
-            height: 100%;
+            overflow-y: hidden;
+            height:100%;
+            margin:0;
+            padding:0;
         }
 
         body {
             height: 100%;
-            background-image: url("https://products.ls.graphics/mesh-gradients/images/16.-Medium-Purple_1.jpg");
+            background-image: linear-gradient(to right, #9ce7d3 0%, #abeff7 50%, #63c1d8 100%);
             display: flex;
             justify-content: center;
             flex-direction: column;
@@ -20,6 +36,10 @@
         }
 
         .patientform {
+            min-height: 30em;
+            background-image: url(wave2.png);
+            background-position: center;
+            background-size: cover;
             height: fit-content;
             width: 29em;
             border-radius: 10px;
@@ -27,12 +47,13 @@
         }
 
         h2 {
+            margin: 1px;
             text-align: center;
             padding: 1em;
-            margin-bottom: 0em;
             font-family: "Montserrat Alternates", sans-serif;
-            color: chocolate;
+            color: white;
             font-size: 35px;
+            text-shadow: 3px 3px 2px rgba(0, 255, 213, 0.336);
         }
 
         form {
@@ -40,31 +61,45 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: chocolate;
+            color: white;
             font-size: 20px;
             font-weight: 800;
+            font-family: "Poppins";
+        }
+        label {
+            font-weight: 500;
+            text-shadow: 2px 2px 2px rgba(0, 255, 204, 0.522);
         }
 
-        input {
-            font-family: "Montserrat Alternates", sans-serif;
-            margin-bottom: 2em;
-            padding: 4px 50px;
+        input{
+            padding:0px 8px;
+            height:1.8em;
+            margin-top: 0.5em;
+            font-family:"Montserrat Alternates", sans-serif;
             border-radius: 7px;
             outline: none;
             border-color: transparent;
             background-color: rgba(0, 0, 0, 0.2);
-            color: brown;
-        }
-
-        input:hover {
-            transform: scale(1.06);
-            transition: all 0.5s ease-in;
-        }
-
-        #submit {
-            padding: 10px 60px;
             color: white;
-            font-size: 15px;
+        }
+
+        #submit{
+            width:10em;
+            margin-top: 4em;
+            margin-bottom: 2em;
+            height:3em;
+            color:white;
+            font-size: 13px;
+            color:white;
+            border-radius: 20px;
+            background-color: rgb(103, 254, 211);
+            box-shadow:1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        #submit:hover {
+            background-color: rgba(0, 171, 131, 0.895); /* Change color on hover */
+            box-shadow:1px 1px 10px 1px rgba(81, 216, 202, 0.615);
         }
 
         #date_in {
@@ -100,10 +135,16 @@
         
         <form action="a.php" method="POST" id="admitForm">
             <label for="patient_id">Patient ID:</label>
-            <input type="text" id="patient_id" name="patient_id" required>
-
+            <div class="labeli">
+                <input type="text" id="patient_id" name="patient_id" required>
+                <i class="fa-regular fa-id-badge"></i>
+            </div>
+            
             <label for="date_in">Date in :</label>
-            <input type="date" name="date_in" id="date_in">
+            <div class="labeli">
+                <input type="date" name="date_in" id="date_in">
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
 
             <input type="submit" value="Submit" id="submit">
         </form>
