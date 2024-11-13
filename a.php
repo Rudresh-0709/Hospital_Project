@@ -23,6 +23,8 @@
     else{
         $pid = $_POST['patient_id'];
         $date_in = $_POST['date_in'];
+        $patient_id = $_POST['patient_id']; // Retrieve the patient_id from the query string
+
     }
 
 

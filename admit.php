@@ -1,3 +1,9 @@
+<?php
+// Get patient_id from the URL query string
+$patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
+?>
+<!-- had to make this page php so as to  -->
+<!-- get the patient_id from URL sent by patient.html and autofill patient_id input with that id -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,13 +98,13 @@
             font-size: 13px;
             color:white;
             border-radius: 20px;
-            background-color: rgb(103, 254, 211);
-            box-shadow:1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            background-color: rgb(106 197 219);
+            box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.2);
             text-shadow: 1px 1px 2px rgb(0, 255, 162);
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
         #submit:hover {
-            background-color: rgba(0, 171, 131, 0.895); /* Change color on hover */
+            background-color: rgb(157 232 214); /* Change color on hover */
             box-shadow:1px 1px 10px 1px rgba(81, 216, 202, 0.615);
         }
 
@@ -136,7 +142,7 @@
         <form action="a.php" method="POST" id="admitForm">
             <label for="patient_id">Patient ID:</label>
             <div class="labeli">
-                <input type="text" id="patient_id" name="patient_id" required>
+                <input type="text" id="patient_id" name="patient_id" value="<?php echo "".$patient_id.""; ?>" required>
                 <i class="fa-regular fa-id-badge"></i>
             </div>
             
@@ -157,6 +163,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
+
             // giving default value as system date to date input
             const today = new Date(); //system date
             date_val = `${today.getFullYear() }-${ today.getMonth() + 1 }-${ today.getDate() }`;
