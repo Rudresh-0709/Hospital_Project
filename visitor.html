@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Information Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"   />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,6 +20,7 @@
         rel="stylesheet">
     <style>
         html {
+            overflow-y: hidden;
             height: 100%;
             margin: 0;
             padding: 0;
@@ -25,18 +29,19 @@
         body {
 
             height: 100%;
-            background-image: url("meshnew.png");
+            background-image: linear-gradient(to right, #9ce7d3 0%, #abeff7 50%, #63c1d8 100%);
             display: flex;
             justify-content: center;
             flex-direction: column;
             align-items: center;
-            background-size: cover;
-
+            background-size: contain;
         }
 
         .patientform {
-            backdrop-filter: blur(40px);
-            min-height: 40em;
+            background-image: url("svg (3).png");
+            background-position: center;
+            background-size: cover;
+            min-height: 30em;
             width: 29em;
             border-radius: 10px;
             box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
@@ -49,6 +54,7 @@
             font-family: "Montserrat Alternates", sans-serif;
             color: white;
             font-size: 35px;
+            text-shadow: 3px 3px 2px rgba(0, 255, 166, 0.432);
         }
 
         form {
@@ -64,61 +70,86 @@
 
         label {
             font-weight: 500;
+            text-shadow: 2px 2px 2px rgba(0, 255, 176, 0.522);
         }
 
         select {
-            height: 2.4em;
-            margin-top: 0.5em;
+            padding: 0px 8px;
+            height: 2.8em;
             font-family: "Montserrat Alternates", sans-serif;
-            margin-bottom: 2em;
             padding: 4px 50px;
             border-radius: 7px;
             outline: none;
             border-color: transparent;
             background-color: rgba(0, 0, 0, 0.2);
             color: white;
-        }
-
-        select:hover {
-            transform: scale(1.06);
-            transition: all 0.5s ease-in;
         }
 
         input {
             height: 1.8em;
             margin-top: 0.5em;
             font-family: "Montserrat Alternates", sans-serif;
-            margin-bottom: 2em;
             padding: 4px 50px;
             border-radius: 7px;
             outline: none;
             border-color: transparent;
             background-color: rgba(0, 0, 0, 0.2);
             color: white;
+            text-align: center;
         }
 
-        input:hover {
-            transform: scale(1.06);
-            transition: all 0.5s ease-in;
-        }
 
         #submit {
             margin-top: 0;
             margin-bottom: 40px;
-            font-weight: 800;
             height: 3em;
             color: white;
-            font-size: 20px;
+            font-size: 17px;
             color: white;
             border-radius: 20px;
-            background-color: rgba(209, 62, 101, 0.685);
+            background-color: rgb(59, 255, 222);
+            box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #submit:hover {
+            background-color: rgba(0, 171, 131, 0.895);
+            /* Change color on hover */
+            box-shadow: 1px 1px 10px 1px rgba(81, 216, 202, 0.615);
+        }
+        i{
+            margin-left:10px;
+            padding-top:8px;
+        }
+        .labeli{
+            padding: 2px;
+            width:45%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1em;
         }
 
         #date_in {
             color: white;
             font-size: 15px;
         }
-        #admit_box{
+        #checkbutton{
+            margin: 0em 0 1.5em 0;
+            width:7em;
+            text-align: center;
+            padding:0;
+            background-color: rgb(49, 215, 165);
+            box-shadow:1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            text-shadow: 1px 1px 2px rgb(73, 191, 157);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        #checkbutton:hover {
+            background-color: rgba(7, 107, 78, 0.895); /* Change color on hover */
+            box-shadow:1px 1px 10px 1px rgba(131, 227, 192, 0.615);
+        }
+        #admit_box {
             display: none;
         }
     </style>
@@ -132,25 +163,32 @@
         <!-- form for fetching Admit_id from Patient_id -->
         <form action="v1.php" method="POST" id="form1">
             <label for="patient_id">Patient ID :</label>
-            <input type="numeric" id="patient_id" name="patient_id" required>
-            <input type="submit" value="Check">
+            <div class="labeli">
+                <input type="numeric" id="patient_id" name="patient_id" required>
+                <i class="fa-regular fa-id-badge"></i>
+            </div>
+            <input type="submit" id="checkbutton" value="Check">
         </form>
 
         <!-- form for making entry of visit in visit database -->
         <form action="v2.php" method="post" id="form2">
             <label for="admit">Admit ID : </label>
-            <input type="numeric" id="admit" name="admit">
-
+            <div class="labeli">
+                <input type="numeric" id="admit" name="admit">
+                <i class="fa-solid fa-id-card"></i>
+            </div>
             <div id="admit_box">Admit ID : </div>
             <!-- <label for="admit_id">Admit ID :</label>
             <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
 
 
             <label for="badge_select">Badge ID :</label>
-            <select name="badge_select" id="badge_select" required>
-                <option value="">Select Badge ID</option>
-            </select>
-
+            <div class="labeli">
+                <select name="badge_select" id="badge_select" required>
+                    <option value="">Select Badge ID</option>
+                </select>
+                <i class="fa-solid fa-ticket" style="padding-top: 2px;"></i>
+            </div>
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
@@ -170,7 +208,7 @@
             $('#form1').on('submit', function (e) {
                 e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
                 $.ajax({
-                    url: 'v1.php'   , // The URL where the data will be sent (in this case, 'a.php')
+                    url: 'v1.php', // The URL where the data will be sent (in this case, 'a.php')
                     type: 'POST', // The method used to send data (POST is typically used for form submissions)
                     data: $(this).serialize(), // Takes all the form data and formats it for sending
                     success: function (response) {
@@ -186,7 +224,7 @@
                 });
             });
 
-            
+
             // code for submitting main form
             $('#form2').on('submit', function (e) {
                 e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
