@@ -131,6 +131,18 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             color:green;
             font-size: larger;
         }
+        .labeli{
+            padding: 2px;
+            width:45%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+        i{
+            margin-left:10px;
+            padding-top:8px;
+        }
     </style>
 
 </head>
