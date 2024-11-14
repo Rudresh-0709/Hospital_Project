@@ -173,19 +173,30 @@
             display: none;
         }
 
+       
         .nav {
             height: 7%;
-            width:50%;
-            background-image: radial-gradient( #4decc176 0%, #3de3f55e 50%, #00c5fc82 100%);
+            width: 50%;
+            /* background-image: radial-gradient(#19cbf876 0%, #3eb2ffc1 50%, #007efcd7 100%); */
+            background-color: rgba(11, 59, 18, 0.699);
             position: absolute;
-            bottom: 0;
-            left:25%;
+            bottom: -100%;
+            left: 25%;
             display: flex;
             justify-content: space-between;
-            border:0.1px solid rgba(0, 0, 0, 0.149);
+            border: 0.1px solid rgba(0, 0, 0, 0.149);
             border-top-left-radius: 25px;
             border-top-right-radius: 25px;
+            animation: slideUp 1s forwards;
         }
+        @keyframes slideUp {
+    from {
+        bottom: -100%; /* Start from below the viewport */
+    }
+    to {
+        bottom: 0; /* End at the bottom of the viewport */
+    }
+}
         .navlink {
 
             display: flex;
