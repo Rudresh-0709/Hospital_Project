@@ -142,14 +142,18 @@
             border-top-right-radius: 25px;
             animation: slideUp 1s forwards;
         }
+
         @keyframes slideUp {
-    from {
-        bottom: -100%; /* Start from below the viewport */
-    }
-    to {
-        bottom: 0; /* End at the bottom of the viewport */
-    }
-}
+            from {
+                bottom: -100%;
+                /* Start from below the viewport */
+            }
+
+            to {
+                bottom: 0;
+                /* End at the bottom of the viewport */
+            }
+        }
 
         .navlink {
             display: flex;
@@ -187,6 +191,12 @@
             color: wheat;
             font-family: "Montserrat Alternates", sans-serif;
         }
+
+        #message{
+            position: relative;
+            bottom: 130px;
+            left: 40vw;
+        }
     </style>
 
 </head>
@@ -215,6 +225,10 @@
         </div>
     </section>
 
+    <div id="message">
+        <!-- error code will come here from patient.php via ajax-->
+    </div>
+
     <div class="nav">
         <div class="navlink">
             <i class="fa-solid fa-hospital"></i>
@@ -228,9 +242,6 @@
             <i class="fa-solid fa-house"></i>
             <a href="index.html">Home</a>
         </div>
-    </div>
-    <div id="message">
-        <!-- error code will come here from patient.php via ajax-->
     </div>
 
 
