@@ -12,10 +12,13 @@
     $password = "maria";
     $dbname = "hospital";
 
+
     // create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     // mysqli is the MySQL Improved extension, which provides an interface for interacting with MySQL databases in PHP.
     // connecting to the database, and performing other database operations.
+
+    date_default_timezone_set('Asia/Kolkata'); // Set timezone to IST
 
     if($conn->connect_error){
         die("connection Failed : " . $conn->connect_error);
@@ -24,16 +27,15 @@
         $aid = $_POST['admit'];
         $bid = $_POST['badge_select'];
         $currentDateTime = new DateTime();
-        $dt = $currentDateTime->format("Y-m-d i:H:s");
-
-        
+        $dt = $currentDateTime->format("Y-m-d");
+        $tt = $currentDateTime->format("H:i:s");
     }
 
     try{
-    $stmt = $conn->prepare("INSERT into visits (date_time, admit_id, badge_id) values(?,?,?)");
+    $stmt = $conn->prepare("INSERT into visits (date, time, admit_id, badge_id) values(?,?,?,?)");
     // prepare statement used to insert the form data into the user_details table
 
-    $stmt->bind_param("sii", $dt, $aid, $bid);
+    $stmt->bind_param("ssii", $dt,$tt, $aid, $bid);
     //  This ensures that the data is properly escaped, preventing SQL injection attacks.
     // "ssss" indicates all parameters are strings.
     if($stmt->execute()){
