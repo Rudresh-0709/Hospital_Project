@@ -29,10 +29,13 @@
         body {
             height: 100%;
             background-image: url("https://products.ls.graphics/mesh-gradients/images/01.-Royal-Heath.jpg");
+        }
+
+        section {
             display: flex;
             justify-content: center;
-            flex-direction: column;
             align-items: center;
+            height: 100%;
         }
 
         .patientform {
@@ -123,31 +126,99 @@
             align-items: center;
             margin-bottom: 2em;
         }
+
+        .nav {
+            height: 7%;
+            width: 50%;
+            background-image: radial-gradient(#19cbf876 0%, #3eb2ffc1 50%, #007efcd7 100%);
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            display: flex;
+            justify-content: space-between;
+            border: 0.1px solid rgba(0, 0, 0, 0.149);
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+
+        .navlink {
+            display: flex;
+            width: 30%;
+            text-align: center;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .navlink i {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-size: larger;
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: larger;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+        }
+
+        .navlink:hover {
+            transform: translateY(-1px) scale(1.05);
+            transition: all 0.2s ease-in;
+        }
+
+        h3 {
+            font-size: x-large;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgb(0, 255, 162);
+            color: wheat;
+            font-family: "Montserrat Alternates", sans-serif;
+        }
     </style>
 
 </head>
 
 <body>
-    <div class="patientform">
-        <h2>Patient Registration Form</h2>
-        <form action="patient.php" method="POST" id="patientForm">
-            <label for="patient_name">Patient Name:</label>
+    <section>
+        <div class="patientform">
+            <h2>Patient Registration Form</h2>
+            <form action="patient.php" method="POST" id="patientForm">
+                <label for="patient_name">Patient Name:</label>
 
-            <div class="labeli">
-                <input type="text" id="patient_name" name="patient_name" required>
-                <i class="fa-solid fa-user"></i>
-            </div>
+                <div class="labeli">
+                    <input type="text" id="patient_name" name="patient_name" required>
+                    <i class="fa-solid fa-user"></i>
+                </div>
 
-            <label for="patient_aadhar">Patient Aadhar:</label>
-            <div class="labeli">
-                <input type="number" name="patient_aadhar" id="patient_aadhar" style="appearance: textfield;" required>
-                <i class="fa-solid fa-address-card"></i>
-            </div>
+                <label for="patient_aadhar">Patient Aadhar:</label>
+                <div class="labeli">
+                    <input type="number" name="patient_aadhar" id="patient_aadhar" style="appearance: textfield;"
+                        required>
+                    <i class="fa-solid fa-address-card"></i>
+                </div>
 
-            <input type="submit" value="Submit" id="submit">
-        </form>
+                <input type="submit" value="Submit" id="submit">
+            </form>
+        </div>
+    </section>
+
+    <div class="nav">
+        <div class="navlink">
+            <i class="fa-solid fa-hospital"></i>
+            <a href="admit.php">Admit</a>
+        </div>
+        <div class="navlink">
+            <i class="fa-solid fa-people-roof"></i>
+            <a href="visitor.html">Visitor</a>
+        </div>
+        <div class="navlink">
+            <i class="fa-solid fa-house"></i>
+            <a href="index.html">Home</a>
+        </div>
     </div>
-
     <div id="message">
         <!-- error code will come here from patient.php via ajax-->
     </div>
@@ -183,7 +254,7 @@
                             console.log("Response from server:", response);  // Log the response to see what it contains
                             window.location.href = final.message.trim();
                         }
-                        else{
+                        else {
                             $('#message').html(final.message);
                         }
                     },

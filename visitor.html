@@ -27,17 +27,26 @@
         }
 
         body {
-
+            margin: 0;
             height: 100%;
             background-image: linear-gradient(to right, #9ce7d3 0%, #abeff7 50%, #63c1d8 100%);
-            display: flex;
+            /* display: flex;
             justify-content: center;
-            flex-direction: column;
+            flex-direction: column; */
             align-items: center;
             background-size: contain;
         }
 
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
         .patientform {
+
+            flex-direction: column;
             background-image: url("svg (3).png");
             background-position: center;
             background-size: cover;
@@ -84,10 +93,12 @@
             background-color: rgba(0, 0, 0, 0.2);
             color: white;
         }
-        option{
-            background-color:#9ce7d3;
+
+        option {
+            background-color: #9ce7d3;
             color: white;
         }
+
         input {
             height: 1.8em;
             margin-top: 0.5em;
@@ -121,14 +132,16 @@
             /* Change color on hover */
             box-shadow: 1px 1px 10px 1px rgba(81, 216, 202, 0.615);
         }
-        i{
-            margin-left:10px;
-            padding-top:8px;
+
+        i {
+            margin-left: 10px;
+            padding-top: 8px;
         }
-        .labeli{
+
+        .labeli {
             padding: 2px;
-            width:45%;
-            display:flex;
+            width: 45%;
+            display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 1em;
@@ -138,64 +151,134 @@
             color: white;
             font-size: 15px;
         }
-        #checkbutton{
+
+        #checkbutton {
             margin: 0em 0 1.5em 0;
-            width:7em;
+            width: 7em;
             text-align: center;
-            padding:0;
+            padding: 0;
             background-color: rgb(49, 215, 165);
-            box-shadow:1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
             text-shadow: 1px 1px 2px rgb(73, 191, 157);
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
+
         #checkbutton:hover {
-            background-color: rgba(7, 107, 78, 0.895); /* Change color on hover */
-            box-shadow:1px 1px 10px 1px rgba(131, 227, 192, 0.615);
+            background-color: rgba(7, 107, 78, 0.895);
+            /* Change color on hover */
+            box-shadow: 1px 1px 10px 1px rgba(131, 227, 192, 0.615);
         }
+
         #admit_box {
             display: none;
+        }
+
+        .nav {
+            height: 7%;
+            width:50%;
+            background-image: radial-gradient( #4decc176 0%, #3de3f55e 50%, #00c5fc82 100%);
+            position: absolute;
+            bottom: 0;
+            left:25%;
+            display: flex;
+            justify-content: space-between;
+            border:0.1px solid rgba(0, 0, 0, 0.149);
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+        .navlink {
+
+            display: flex;
+            width: 30%;
+            text-align: center;
+            justify-content: center;
+            gap:10px;
+            align-items: center;
+        }
+        .navlink i{
+            margin:0;
+            padding:0;
+            color: white;
+            font-size: larger;
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: larger;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+        }
+        .navlink:hover{
+            transform:translateY(-1px) scale(1.05);
+            transition: all 0.2s ease-in;
+        }
+
+        h3 {
+            font-size: x-large;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgb(0, 255, 162);
+            color: wheat;
+            font-family: "Montserrat Alternates", sans-serif;
         }
     </style>
 
 </head>
 
 <body>
-    <div class="patientform">
-        <h2>Visitor Form</h2>
 
-        <!-- form for fetching Admit_id from Patient_id -->
-        <form action="v1.php" method="POST" id="form1">
-            <label for="patient_id">Patient ID :</label>
-            <div class="labeli">
-                <input type="numeric" id="patient_id" name="patient_id" required>
-                <i class="fa-regular fa-id-badge"></i>
-            </div>
-            <input type="submit" id="checkbutton" value="Check">
-        </form>
+    <section>
+        <div class="patientform">
+            <h2>Visitor Form</h2>
 
-        <!-- form for making entry of visit in visit database -->
-        <form action="v2.php" method="post" id="form2">
-            <label for="admit">Admit ID : </label>
-            <div class="labeli">
-                <input type="numeric" id="admit" name="admit">
-                <i class="fa-solid fa-id-card"></i>
-            </div>
-            <div id="admit_box">Admit ID : </div>
-            <!-- <label for="admit_id">Admit ID :</label>
+            <!-- form for fetching Admit_id from Patient_id -->
+            <form action="v1.php" method="POST" id="form1">
+                <label for="patient_id">Patient ID :</label>
+                <div class="labeli">
+                    <input type="numeric" id="patient_id" name="patient_id" required>
+                    <i class="fa-regular fa-id-badge"></i>
+                </div>
+                <input type="submit" id="checkbutton" value="Check">
+            </form>
+
+            <!-- form for making entry of visit in visit database -->
+            <form action="v2.php" method="post" id="form2">
+                <label for="admit">Admit ID : </label>
+                <div class="labeli">
+                    <input type="numeric" id="admit" name="admit">
+                    <i class="fa-solid fa-id-card"></i>
+                </div>
+                <div id="admit_box">Admit ID : </div>
+                <!-- <label for="admit_id">Admit ID :</label>
             <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
 
 
-            <label for="badge_select">Badge ID :</label>
-            <div class="labeli">
-                <select name="badge_select" id="badge_select" required>
-                    <option value="">Select Badge ID</option>
-                </select>
-                <i class="fa-solid fa-ticket" style="padding-top: 2px;"></i>
-            </div>
-            <input type="submit" value="Submit" id="submit">
-        </form>
+                <label for="badge_select">Badge ID :</label>
+                <div class="labeli">
+                    <select name="badge_select" id="badge_select" required>
+                        <option value="">Select Badge ID</option>
+                    </select>
+                    <i class="fa-solid fa-ticket" style="padding-top: 2px;"></i>
+                </div>
+                <input type="submit" value="Submit" id="submit">
+            </form>
+        </div>
+    </section>
+    <div class="nav">
+        <div class="navlink">
+            <i class="fa-solid fa-hospital-user"></i>
+            <a href="patient.html">Patient</a>
+        </div>
+        <div class="navlink">
+            <i class="fa-solid fa-hospital"></i>
+            <a href="admit.php">Admit</a>
+        </div>
+        <div class="navlink">
+            <i class="fa-solid fa-house"></i>
+            <a href="index.html">Home</a>
+        </div>
     </div>
-
     <div id="message">
 
     </div>
