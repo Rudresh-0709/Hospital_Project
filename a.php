@@ -5,18 +5,8 @@
   Thus it helps to not terminate the code and just display the error-->
 
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "maria";
-    $dbname = "hospital";
-
-    $flag = 0;    // admission not yet succesfull
-
-    // create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // mysqli is the MySQL Improved extension, which provides an interface for interacting with MySQL databases in PHP.
-    // connecting to the database, and performing other database operations.
-
+    require('connection.php');
+    $flag = 0;
     if($conn->connect_error){
         die("connection Failed : " . $conn->connect_error);
     }

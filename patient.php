@@ -7,17 +7,7 @@
 //    Thus it helps to not terminate the code and just display the error-->
  
 
-    // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT)       // -- helps catch all possible error
-    $servername = "localhost";
-    $username = "root";
-    $password = "maria";
-    $dbname = "hospital";
-
-    // create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // mysqli is the MySQL Improved extension, which provides an interface for interacting with MySQL databases in PHP.
-    // connecting to the database, and performing other database operations.
-
+    require('connection.php');
     if($conn->connect_error){
         die("connection Failed : " . $conn->connect_error);
     }
