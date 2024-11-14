@@ -173,7 +173,7 @@
             display: none;
         }
 
-       
+
         .nav {
             height: 7%;
             width: 50%;
@@ -189,26 +189,32 @@
             border-top-right-radius: 25px;
             animation: slideUp 1s forwards;
         }
+
         @keyframes slideUp {
-    from {
-        bottom: -100%; /* Start from below the viewport */
-    }
-    to {
-        bottom: 0; /* End at the bottom of the viewport */
-    }
-}
+            from {
+                bottom: -100%;
+                /* Start from below the viewport */
+            }
+
+            to {
+                bottom: 0;
+                /* End at the bottom of the viewport */
+            }
+        }
+
         .navlink {
 
             display: flex;
             width: 30%;
             text-align: center;
             justify-content: center;
-            gap:10px;
+            gap: 10px;
             align-items: center;
         }
-        .navlink i{
-            margin:0;
-            padding:0;
+
+        .navlink i {
+            margin: 0;
+            padding: 0;
             color: white;
             font-size: larger;
             text-shadow: 1px 1px 2px rgb(0, 255, 162);
@@ -221,8 +227,9 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-shadow: 1px 1px 2px rgb(0, 255, 162);
         }
-        .navlink:hover{
-            transform:translateY(-1px) scale(1.05);
+
+        .navlink:hover {
+            transform: translateY(-1px) scale(1.05);
             transition: all 0.2s ease-in;
         }
 
@@ -243,12 +250,16 @@
         <div class="patientform">
             <h2>Visitor Form</h2>
 
-            <!-- form for fetching Admit_id from Patient_id -->
+            <!-- form for fetching Admit_id from Patient_name -->
             <form action="v1.php" method="POST" id="form1">
-                <label for="patient_id">Patient ID :</label>
+                <label for="patient_name">Patient Name :</label>
                 <div class="labeli">
-                    <input type="numeric" id="patient_id" name="patient_id" required>
+                    <input type="numeric" id="patient_name" value="" name="patient_name" required>
                     <i class="fa-regular fa-id-badge"></i>
+
+                    <select name="names" id="names">
+                        <option value=""></option>
+                    </select>
                 </div>
                 <input type="submit" id="checkbutton" value="Check">
             </form>
@@ -298,10 +309,51 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        var name_arr = [];
+
+        // code to fetch all patient names from database on load
+        $(document).ready(function () {
+            $.ajax({
+                url: 'fetch_patient.php',
+                type: 'GET',
+                success: function (response) {
+                    name_arr = JSON.parse(response);
+                    // name_arr will look smthg like
+                    // [
+                    // {"name": "John Doe" },
+                    // {"name": "Jane Smith" },
+                    // {"name": "Robert Brown" }
+                    // ]
+                },
+                error: function (response) {
+                    $('#message').html("Patient name ajax load error");
+                }
+            })
+        });
+
+        // code doing searching inside the fetched names
+        $('#patient_name').on('keyup input', function () {
+            $('#names').empty();    // need to do this so as to not add up filtered values at each keyUp
+            var filter_name_arr = name_arr.filter(i =>
+                i.name.toLowerCase().includes($('#patient_name').val().toLowerCase()) 
+            );
+            filter_name_arr.forEach(element => {
+                // names is the select input
+                $('#names').append(`
+                <option value="${element.name}">${element.name}</option>
+                `)
+            });
+        });
+
+        // code replacing the search input with the selected input(name) from drop down
+        $('#names').on('input', function(){
+            $('#patient_name').val($('#names').val());
+        })
+
         $(document).ready(function () {
             // This line means: once the HTML page is fully loaded, the function inside will run
 
-            // to fetch admit id from patient id and get corresponding badges
+            // to fetch admit id from patient name and get corresponding badges
             $('#form1').on('submit', function (e) {
                 e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
                 $.ajax({
