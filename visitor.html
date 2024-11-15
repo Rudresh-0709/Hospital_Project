@@ -39,9 +39,12 @@
 
         section {
             display: flex;
-            justify-content: center;
+            justify-content: space-evenly;
             align-items: center;
             height: 100%;
+        }
+        img{
+            height:80%;
         }
 
         .patientform {
@@ -92,6 +95,7 @@
             border-color: transparent;
             background-color: rgba(0, 0, 0, 0.2);
             color: white;
+            width:200px;
         }
 
         option {
@@ -99,7 +103,8 @@
             color: white;
         }
 
-        input{
+        input {
+            width:200px;
             height: 1.8em;
             margin-top: 0.5em;
             font-family: "Montserrat Alternates", sans-serif;
@@ -111,10 +116,12 @@
             color: white;
             text-align: center;
         }
-        #names{
-            height:2.7em;
-            margin-top:0.5em;
-            margin-left: 1em;;
+
+        #names {
+            height: 2.7em;
+            margin-top: 0.5em;
+            margin-left: 1em;
+            ;
         }
 
 
@@ -291,13 +298,14 @@
                 <input type="submit" value="Submit" id="submit">
             </form>
         </div>
+        <img src="protect-your-family-during-corona.png" alt="">
     </section>
     <div class="nav">
         <a href="patient.html" class="navlink">
             <i class="fa-solid fa-hospital-user"></i>
             <h4>Patient</h4>
         </a>
-        
+
         <a href="admit.php" class="navlink">
             <i class="fa-solid fa-hospital"></i>
             <h4>Admit</h4>
@@ -341,7 +349,7 @@
         $('#patient_name').on('keyup input', function () {
             $('#names').empty();    // need to do this so as to not add up filtered values at each keyUp
             var filter_name_arr = name_arr.filter(i =>
-                i.name.toLowerCase().includes($('#patient_name').val().toLowerCase()) 
+                i.name.toLowerCase().includes($('#patient_name').val().toLowerCase())
             );
             filter_name_arr.forEach(element => {
                 // names is the select input
@@ -352,7 +360,7 @@
         });
 
         // code replacing the search input with the selected input(name) from drop down
-        $('#names').on('input', function(){
+        $('#names').on('input', function () {
             $('#patient_name').val($('#names').val());
         })
 
