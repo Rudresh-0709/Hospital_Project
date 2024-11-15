@@ -143,6 +143,61 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             margin-left:10px;
             padding-top:8px;
         }
+        .nav {
+            height: 7%;
+            width: 50%;
+            /* background-image: radial-gradient(#19cbf876 0%, #3eb2ffc1 50%, #007efcd7 100%); */
+            background-color: rgba(27 ,73 ,73 , 70%);
+            position: absolute;
+            bottom: -100%;
+            left: 25%;
+            display: flex;
+            justify-content: space-between;
+            border: 0.1px solid rgba(0, 0, 0, 0.149);
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            animation: slideUp 1s forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                bottom: -100%;
+                /* Start from below the viewport */
+            }
+
+            to {
+                bottom: 0;
+                /* End at the bottom of the viewport */
+            }
+        }
+
+        .navlink {
+            display: flex;
+            width: 30%;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            gap: 10px
+        }
+        .navlink:hover {
+            transform: translateY(-1px) scale(1.05);
+            transition: all 0.2s ease-in;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: larger;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+        }
+
+        .navlink i {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-size: larger;
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+        }
     </style>
 
 </head>
@@ -166,6 +221,21 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
 
             <input type="submit" value="Submit" id="submit">
         </form>
+    </div>
+    <div class="nav">
+        <a href="admit.php" class="navlink">
+            <i class="fa-solid fa-hospital"></i>
+            <h4>Admit</h4>
+        </a>
+        <a href="visitor.html" class="navlink">
+            <i class="fa-solid fa-hospital-user"></i>
+            <h4>Visitor</h4>
+        </a>
+
+        <a href="index.html" class="navlink">
+            <i class="fa-solid fa-house"></i>
+            <h4>Home</h4>
+        </a>
     </div>
 
     <div id="message">
