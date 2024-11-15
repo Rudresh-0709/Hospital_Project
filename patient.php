@@ -1,7 +1,7 @@
 
   <?php
-//   <!-- !! TRY CATCH IMPORTANCE !! -->
-//   <!-- when there was any error occuring from stmt->execute line , the error would itself terminate the code and give its own error msg 
+//    !! TRY CATCH IMPORTANCE !! 
+//    when there was any error occuring from stmt->execute line , the error would itself terminate the code and give its own error msg 
 //    ... does not go to else block where i was handling error 
 //    This shows the Need for try and catch as it catches such error and provides the steps that the program should execute(handling) 
 //    Thus it helps to not terminate the code and just display the error-->
