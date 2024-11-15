@@ -73,15 +73,24 @@
             font-weight: 800;
             font-family: "Poppins";
         }
+        .inputname{
+            position: relative;
+        }
 
         label {
             font-weight: 500;
             text-shadow: 2px 2px 2px rgba(0, 166, 255, 0.522);
+            position: absolute;
+            top: 10px;
+            left: 13px;
         }
 
+
         input {
+
             padding: 0px 8px;
-            height: 1.8em;
+            height: 37px;
+            width: 250px;
             margin-top: 0.5em;
             font-family: "Montserrat Alternates", sans-serif;
             border-radius: 7px;
@@ -91,9 +100,17 @@
             color: white;
         }
 
+        input:valid~label ,
+        input:focus~label,
+        input:hover~label {
+            transition: all 0.8s ease;
+            top:-25px;
+            font-size:large;
+        }
+
         #submit {
             width: 10em;
-            margin-top: 5em;
+            margin-top: 3em;
             margin-bottom: 1em;
             height: 3em;
             color: white;
@@ -124,7 +141,6 @@
 
         .labeli {
             padding: 2px;
-            width: 45%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -211,18 +227,23 @@
         <div class="patientform">
             <h2>Patient Registration Form</h2>
             <form action="patient.php" method="POST" id="patientForm">
-                <label for="patient_name">Patient Name:</label>
-
-                <div class="labeli">
-                    <input type="text" id="patient_name" name="patient_name" required>
-                    <i class="fa-solid fa-user"></i>
+                
+                
+                <div class="inputname">
+                    <div class="labeli">
+                        <input type="text" id="patient_name" name="patient_name" onfocus="labelup()" required>
+                        <i class="fa-solid fa-user"></i>
+                        <label for="patient_name">Patient Name:</label>
+                    </div>
                 </div>
 
-                <label for="patient_aadhar">Patient Aadhar:</label>
-                <div class="labeli">
-                    <input type="number" name="patient_aadhar" id="patient_aadhar" style="appearance: textfield;"
-                        required>
-                    <i class="fa-solid fa-address-card"></i>
+                <div class="inputname">
+                    <div class="labeli">
+                        <input type="number" name="patient_aadhar" id="patient_aadhar" style="appearance: textfield;"
+                            required>
+                        <i class="fa-solid fa-address-card"></i>
+                        <label for="patient_aadhar">Patient Aadhar:</label>
+                    </div>
                 </div>
 
                 <input type="submit" value="Submit" id="submit">
@@ -255,7 +276,15 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        function labelup() {
+            const labels = document.querySelectorAll("label");
+            labels.forEach((label) => {
+                labels.style.top = "0px";
+            })
+        }
+
         $(document).ready(function () {
+
 
             // This line means: once the HTML page is fully loaded, the function inside will run
             $('#patientForm').on('submit', function (e) {
