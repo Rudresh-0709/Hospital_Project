@@ -1,6 +1,7 @@
-<!-- Template php file for setting up connection with hospital database -->
- <!-- used in all php files -->
+
 <?php 
+    // Template php file for setting up connection with hospital database
+    // used in all php files
     // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT)       // -- helps catch all possible error
     $servername = "localhost";
     $username = "root";
