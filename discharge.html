@@ -20,7 +20,6 @@
         rel="stylesheet">
     <style>
         html {
-            overflow-y: hidden;
             height: 100%;
             margin: 0;
             padding: 0;
@@ -228,7 +227,7 @@
             width: 50%;
             /* background-image: radial-gradient(#19cbf876 0%, #3eb2ffc1 50%, #007efcd7 100%); */
             background-color: rgba(11, 59, 18, 0.699);
-            position: absolute;
+            position: sticky;
             bottom: -100%;
             left: 25%;
             display: flex;
@@ -300,7 +299,7 @@
             <h2>Discharge Form</h2>
 
             <!-- form for fetching Admit_id from Patient_name -->
-            <form action="v1.php" method="POST" id="form1">
+            <form action="discharge1.php" method="POST" id="form1">
                 <div class="inputtype">
 
                     <div class="labeli">
@@ -331,7 +330,7 @@
                 <!-- <label for="admit_id">Admit ID :</label>
             <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
 
-                <input type=" submit" value="Submit" id="submit">
+                <input type="submit" value="Submit" id="submit">
             </form>
         </div>
         <img src="protect-your-family-during-corona.png" alt="">
@@ -407,7 +406,7 @@
             $('#form1').on('submit', function (e) {
                 e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
                 $.ajax({
-                    url: 'v1.php', // The URL where the data will be sent (in this case, 'a.php')
+                    url: 'discharge1.php', // The URL where the data will be sent (in this case, 'a.php')
                     type: 'POST', // The method used to send data (POST is typically used for form submissions)
                     data: $(this).serialize(), // Takes all the form data and formats it for sending
                     success: function (response) {
@@ -428,7 +427,7 @@
             $('#form2').on('submit', function (e) {
                 e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
                 $.ajax({
-                    url: 'v2.php', // The URL where the data will be sent (in this case, 'a.php')
+                    url: 'discharge2.php', // The URL where the data will be sent (in this case, 'a.php')
                     type: 'POST', // The method used to send data (POST is typically used for form submissions)
                     data: $(this).serialize(), // Takes all the form data and formats it for sending
                     success: function (response) {
