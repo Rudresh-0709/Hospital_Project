@@ -43,8 +43,9 @@
             align-items: center;
             height: 100%;
         }
-        img{
-            height:80%;
+
+        img {
+            height: 80%;
         }
 
         .patientform {
@@ -80,18 +81,21 @@
             font-family: "Poppins";
         }
 
-        .inputtype{
+        .inputtype {
             position: relative;
         }
+
         label {
             position: absolute;
             top: 10px;
             left: 13px;
-            font-weight: 500;
-            text-shadow: 2px 2px 2px rgba(0, 255, 176, 0.522);
+            font-weight: 200;
+            font-size: smaller;
+            color: rgb(72, 72, 72);
         }
-        #badgelabel{
-            top:7px;
+
+        #badgelabel {
+            top: 7px;
         }
 
         select {
@@ -102,32 +106,40 @@
             border-color: transparent;
             background-color: rgba(0, 0, 0, 0.2);
             color: white;
-            width:260px;
+            width: 260px;
 
         }
 
-        input:valid~label ,
+        input:hover~label,
         input:focus~label,
-        input:hover~label {
+        input:valid~label {
             transition: all 0.8s ease;
-            top:-25px;
-            font-size:large;
+            top: -25px;
+            font-size: medium;
+            color:white;
+            font-weight: 400;
         }
+
         
-        select:valid~#badgelabel ,
+
+
+        select:valid~#badgelabel,
         select:focus~#badgelabel,
         select:hover~#badgelabel {
             transition: all 0.8s ease;
-            top:-25px;
-            font-size:large;
+            top: -25px;
+            font-size: medium;
+            color: #ffffff;
+            font-weight: 400;
         }
+
         option {
             background-color: #9ce7d3;
             color: white;
         }
 
         input {
-            width:250px;
+            width: 250px;
             height: 30px;
             margin-top: 0.5em;
             font-family: "Montserrat Alternates", sans-serif;
@@ -143,17 +155,18 @@
             height: 2.7em;
             margin-top: 0.5em;
             margin-left: 1em;
-            width:185px
+            width: 185px
         }
-        #patient_name{
-            width:185px;
+
+        #patient_name {
+            width: 185px;
         }
 
 
         #submit {
-            margin-top: 0;
+            width:200px;
             margin-bottom: 40px;
-            height: 3em;
+            height: 2em;
             color: white;
             font-size: 17px;
             color: white;
@@ -162,11 +175,11 @@
             box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
             text-shadow: 1px 1px 2px rgb(0, 255, 162);
             transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
         }
 
         #submit:hover {
             background-color: rgba(0, 171, 131, 0.895);
-            /* Change color on hover */
             box-shadow: 1px 1px 10px 1px rgba(81, 216, 202, 0.615);
         }
 
@@ -294,21 +307,21 @@
                         <input type="numeric" id="patient_name" value="" name="patient_name" required>
                         <i class="fa-regular fa-id-badge"></i>
                         <label for="patient_name">Patient Name :</label>
-    
+
                         <select name="names" id="names">
                             <option value=""></option>
                         </select>
                     </div>
                 </div>
-                <input type="submit" id="checkbutton" value="Check" style="margin-bottom: 30px">
+                <input type="submit" id="checkbutton" value="Check" style="margin-bottom: 60px">
             </form>
 
             <!-- form for making entry of visit in visit database -->
             <form action="v2.php" method="post" id="form2">
                 <div class="inputtype">
 
-                    <div class="labeli" style="margin-bottom: 40px">
-                        <input type="numeric" id="admit" name="admit">
+                    <div class="labeli" style="margin-bottom: 70px">
+                        <input type="numeric" id="admit" name="admit" required>
                         <label for="admit">Admit ID : </label>
                         <i class="fa-solid fa-id-card"></i>
                     </div>
@@ -319,17 +332,17 @@
             <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
 
 
-            <div class="inputtype">
+                <div class="inputtype">
 
-                <div class="labeli">
-                    <select name="badge_select" id="badge_select" required >
-                        <option value=""></option>
-                    </select>
-                    <i class="fa-solid fa-ticket" style="padding-top: 2px;"></i>
-                    <label for="badge_select" id="badgelabel" ">Badge ID :</label>
+                    <div class="labeli" style="margin-bottom: 50px;">
+                        <select name="badge_select" id="badge_select" required>
+                            <option value=""></option>
+                        </select>
+                        <i class="fa-solid fa-ticket" style="padding-top: 2px;"></i>
+                        <label for="badge_select" id="badgelabel" ">Badge ID :</label>
                 </div>
             </div>
-                <input type="submit" value="Submit" id="submit">
+                <input type=" submit" value="Submit" id="submit">
             </form>
         </div>
         <img src="protect-your-family-during-corona.png" alt="">
