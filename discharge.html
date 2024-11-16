@@ -116,11 +116,11 @@
             transition: all 0.8s ease;
             top: -25px;
             font-size: medium;
-            color:white;
+            color: white;
             font-weight: 400;
         }
 
-        
+
 
 
         select:valid~#badgelabel,
@@ -164,7 +164,7 @@
 
 
         #submit {
-            width:200px;
+            width: 200px;
             margin-bottom: 40px;
             height: 2em;
             color: white;
@@ -297,7 +297,7 @@
 
     <section>
         <div class="patientform">
-            <h2>Visitor Form</h2>
+            <h2>Discharge Form</h2>
 
             <!-- form for fetching Admit_id from Patient_name -->
             <form action="v1.php" method="POST" id="form1">
@@ -323,7 +323,7 @@
                     <div class="labeli" style="margin-bottom: 70px">
                         <input type="numeric" id="admit" name="admit" required>
                         <label for="admit">Admit ID : </label>
-                        <i class="fa-solid fa-id-badge"></i>
+                        <i class="fa-solid fa-id-card"></i>
                     </div>
 
                 </div>
@@ -331,17 +331,6 @@
                 <!-- <label for="admit_id">Admit ID :</label>
             <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
 
-
-                <div class="inputtype">
-
-                    <div class="labeli" style="margin-bottom: 50px;">
-                        <select name="badge_select" id="badge_select" required>
-                            <option value=""></option>
-                        </select>
-                        <i class="fa-solid fa-ticket" style="padding-top: 2px;"></i>
-                        <label for="badge_select" id="badgelabel" ">Badge ID :</label>
-                </div>
-            </div>
                 <input type=" submit" value="Submit" id="submit">
             </form>
         </div>
