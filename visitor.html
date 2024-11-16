@@ -80,9 +80,18 @@
             font-family: "Poppins";
         }
 
+        .inputtype{
+            position: relative;
+        }
         label {
+            position: absolute;
+            top: 10px;
+            left: 13px;
             font-weight: 500;
             text-shadow: 2px 2px 2px rgba(0, 255, 176, 0.522);
+        }
+        #badgelabel{
+            top:7px;
         }
 
         select {
@@ -94,8 +103,24 @@
             background-color: rgba(0, 0, 0, 0.2);
             color: white;
             width:260px;
+
         }
 
+        input:valid~label ,
+        input:focus~label,
+        input:hover~label {
+            transition: all 0.8s ease;
+            top:-25px;
+            font-size:large;
+        }
+        
+        select:valid~#badgelabel ,
+        select:focus~#badgelabel,
+        select:hover~#badgelabel {
+            transition: all 0.8s ease;
+            top:-25px;
+            font-size:large;
+        }
         option {
             background-color: #9ce7d3;
             color: white;
@@ -263,37 +288,47 @@
 
             <!-- form for fetching Admit_id from Patient_name -->
             <form action="v1.php" method="POST" id="form1">
-                <label for="patient_name">Patient Name :</label>
-                <div class="labeli">
-                    <input type="numeric" id="patient_name" value="" name="patient_name" required>
-                    <i class="fa-regular fa-id-badge"></i>
+                <div class="inputtype">
 
-                    <select name="names" id="names">
-                        <option value=""></option>
-                    </select>
+                    <div class="labeli">
+                        <input type="numeric" id="patient_name" value="" name="patient_name" required>
+                        <i class="fa-regular fa-id-badge"></i>
+                        <label for="patient_name">Patient Name :</label>
+    
+                        <select name="names" id="names">
+                            <option value=""></option>
+                        </select>
+                    </div>
                 </div>
-                <input type="submit" id="checkbutton" value="Check">
+                <input type="submit" id="checkbutton" value="Check" style="margin-bottom: 30px">
             </form>
 
             <!-- form for making entry of visit in visit database -->
             <form action="v2.php" method="post" id="form2">
-                <label for="admit">Admit ID : </label>
-                <div class="labeli">
-                    <input type="numeric" id="admit" name="admit">
-                    <i class="fa-solid fa-id-card"></i>
+                <div class="inputtype">
+
+                    <div class="labeli" style="margin-bottom: 40px">
+                        <input type="numeric" id="admit" name="admit">
+                        <label for="admit">Admit ID : </label>
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+
                 </div>
                 <div id="admit_box">Admit ID : </div>
                 <!-- <label for="admit_id">Admit ID :</label>
             <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
 
 
-                <label for="badge_select">Badge ID :</label>
+            <div class="inputtype">
+
                 <div class="labeli">
-                    <select name="badge_select" id="badge_select" required>
-                        <option value="">Select Badge ID</option>
+                    <select name="badge_select" id="badge_select" required >
+                        <option value=""></option>
                     </select>
                     <i class="fa-solid fa-ticket" style="padding-top: 2px;"></i>
+                    <label for="badge_select" id="badgelabel" ">Badge ID :</label>
                 </div>
+            </div>
                 <input type="submit" value="Submit" id="submit">
             </form>
         </div>
