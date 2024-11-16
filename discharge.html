@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Information Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"   />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ruslan+Display&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        html {
+            overflow-y: hidden;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            height: 100%;
+            background-image: linear-gradient(to right, #9ce7d3 0%, #abeff7 50%, #63c1d8 100%);
+            /* display: flex;
+            justify-content: center;
+            flex-direction: column; */
+            align-items: center;
+            background-size: contain;
+        }
+
+        section {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100%;
+        }
+
+        img {
+            height: 80%;
+        }
+
+        .patientform {
+
+            flex-direction: column;
+            background-image: url("svg (3).png");
+            background-position: center;
+            background-size: cover;
+            min-height: 30em;
+            width: 29em;
+            border-radius: 10px;
+            box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+        }
+
+        h2 {
+            margin: 1px;
+            text-align: center;
+            padding: 1em;
+            font-family: "Montserrat Alternates", sans-serif;
+            color: white;
+            font-size: 35px;
+            text-shadow: 3px 3px 2px rgba(0, 255, 166, 0.432);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+            font-family: "Poppins";
+        }
+
+        .inputtype {
+            position: relative;
+        }
+
+        label {
+            position: absolute;
+            top: 10px;
+            left: 13px;
+            font-weight: 200;
+            font-size: smaller;
+            color: rgb(72, 72, 72);
+        }
+
+        #badgelabel {
+            top: 7px;
+        }
+
+        select {
+            height: 40px;
+            font-family: "Montserrat Alternates", sans-serif;
+            border-radius: 7px;
+            outline: none;
+            border-color: transparent;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            width: 260px;
+
+        }
+
+        input:hover~label,
+        input:focus~label,
+        input:valid~label {
+            transition: all 0.8s ease;
+            top: -25px;
+            font-size: medium;
+            color: white;
+            font-weight: 400;
+        }
+
+
+
+
+        select:valid~#badgelabel,
+        select:focus~#badgelabel,
+        select:hover~#badgelabel {
+            transition: all 0.8s ease;
+            top: -25px;
+            font-size: medium;
+            color: #ffffff;
+            font-weight: 400;
+        }
+
+        option {
+            background-color: #9ce7d3;
+            color: white;
+        }
+
+        input {
+            width: 250px;
+            height: 30px;
+            margin-top: 0.5em;
+            font-family: "Montserrat Alternates", sans-serif;
+            border-radius: 7px;
+            outline: none;
+            border-color: transparent;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-align: center;
+        }
+
+        #names {
+            height: 2.7em;
+            margin-top: 0.5em;
+            margin-left: 1em;
+            width: 185px
+        }
+
+        #patient_name {
+            width: 185px;
+        }
+
+
+        #submit {
+            width: 200px;
+            margin-bottom: 40px;
+            height: 2em;
+            color: white;
+            font-size: 17px;
+            color: white;
+            border-radius: 20px;
+            background-color: rgb(59, 255, 222);
+            box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        #submit:hover {
+            background-color: rgba(0, 171, 131, 0.895);
+            box-shadow: 1px 1px 10px 1px rgba(81, 216, 202, 0.615);
+        }
+
+        i {
+            margin-left: 10px;
+            padding-top: 8px;
+        }
+
+        .labeli {
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+
+        #date_in {
+            color: white;
+            font-size: 15px;
+        }
+
+        #checkbutton {
+            margin: 0em 0 1.5em 0;
+            width: 7em;
+            text-align: center;
+            padding: 0;
+            background-color: rgb(49, 215, 165);
+            box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            text-shadow: 1px 1px 2px rgb(73, 191, 157);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #checkbutton:hover {
+            background-color: rgba(7, 107, 78, 0.895);
+            /* Change color on hover */
+            box-shadow: 1px 1px 10px 1px rgba(131, 227, 192, 0.615);
+        }
+
+        #admit_box {
+            display: none;
+        }
+
+
+        .nav {
+            height: 7%;
+            width: 50%;
+            /* background-image: radial-gradient(#19cbf876 0%, #3eb2ffc1 50%, #007efcd7 100%); */
+            background-color: rgba(11, 59, 18, 0.699);
+            position: absolute;
+            bottom: -100%;
+            left: 25%;
+            display: flex;
+            justify-content: space-between;
+            border: 0.1px solid rgba(0, 0, 0, 0.149);
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            animation: slideUp 1s forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                bottom: -100%;
+                /* Start from below the viewport */
+            }
+
+            to {
+                bottom: 0;
+                /* End at the bottom of the viewport */
+            }
+        }
+
+        .navlink {
+
+            display: flex;
+            width: 30%;
+            text-align: center;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .navlink i {
+            margin: 0;
+            padding: 0;
+            color: white;
+            font-size: larger;
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-size: larger;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+        }
+
+        .navlink:hover {
+            transform: translateY(-1px) scale(1.05);
+            transition: all 0.2s ease-in;
+        }
+
+        h3 {
+            font-size: x-large;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgb(0, 255, 162);
+            color: wheat;
+            font-family: "Montserrat Alternates", sans-serif;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section>
+        <div class="patientform">
+            <h2>Discharge Form</h2>
+
+            <!-- form for fetching Admit_id from Patient_name -->
+            <form action="v1.php" method="POST" id="form1">
+                <div class="inputtype">
+
+                    <div class="labeli">
+                        <input type="numeric" id="patient_name" value="" name="patient_name" required>
+                        <i class="fa-regular fa-id-badge"></i>
+                        <label for="patient_name">Patient Name :</label>
+
+                        <select name="names" id="names">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <input type="submit" id="checkbutton" value="Check" style="margin-bottom: 60px">
+            </form>
+
+            <!-- form for making entry of visit in visit database -->
+            <form action="v2.php" method="post" id="form2">
+                <div class="inputtype">
+
+                    <div class="labeli" style="margin-bottom: 70px">
+                        <input type="numeric" id="admit" name="admit" required>
+                        <label for="admit">Admit ID : </label>
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+
+                </div>
+                <div id="admit_box">Admit ID : </div>
+                <!-- <label for="admit_id">Admit ID :</label>
+            <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
+
+                <input type=" submit" value="Submit" id="submit">
+            </form>
+        </div>
+        <img src="protect-your-family-during-corona.png" alt="">
+    </section>
+    <div class="nav">
+        <a href="patient.html" class="navlink">
+            <i class="fa-solid fa-hospital-user"></i>
+            <h4>Patient</h4>
+        </a>
+
+        <a href="admit.php" class="navlink">
+            <i class="fa-solid fa-hospital"></i>
+            <h4>Admit</h4>
+        </a>
+        <a href="index.html" class="navlink">
+            <i class="fa-solid fa-house"></i>
+            <h4>Home</h4>
+        </a>
+    </div>
+    <div id="message">
+
+    </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var name_arr = [];
+
+        // code to fetch all patient names from database on load
+        $(document).ready(function () {
+            $.ajax({
+                url: 'fetch_patient.php',
+                type: 'GET',
+                success: function (response) {
+                    name_arr = JSON.parse(response);
+                    // name_arr will look smthg like
+                    // [
+                    // {"name": "John Doe" },
+                    // {"name": "Jane Smith" },
+                    // {"name": "Robert Brown" }
+                    // ]
+                },
+                error: function (response) {
+                    $('#message').html("Patient name ajax load error");
+                }
+            })
+        });
+
+        // code doing searching inside the fetched names
+        $('#patient_name').on('keyup input', function () {
+            $('#names').empty();    // need to do this so as to not add up filtered values at each keyUp
+            var filter_name_arr = name_arr.filter(i =>
+                i.name.toLowerCase().includes($('#patient_name').val().toLowerCase())
+            );
+            filter_name_arr.forEach(element => {
+                // names is the select input
+                $('#names').append(`
+                <option value="${element.name}">${element.name}</option>
+                `)
+            });
+        });
+
+        // code replacing the search input with the selected input(name) from drop down
+        $('#names').on('input', function () {
+            $('#patient_name').val($('#names').val());
+        })
+
+        $(document).ready(function () {
+            // This line means: once the HTML page is fully loaded, the function inside will run
+
+            // to fetch admit id from patient name and get corresponding badges
+            $('#form1').on('submit', function (e) {
+                e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
+                $.ajax({
+                    url: 'v1.php', // The URL where the data will be sent (in this case, 'a.php')
+                    type: 'POST', // The method used to send data (POST is typically used for form submissions)
+                    data: $(this).serialize(), // Takes all the form data and formats it for sending
+                    success: function (response) {
+                        // This function runs if the request is successful
+                        $('#admit_box').html(response); // Shows the server's response message in the div with id 'message'
+                        $('#admit').val($('#admit_id').html());
+                        $('#badge_select').html(response);
+                    },
+                    error: function () {
+                        // This function runs if there’s an error with the request
+                        $('#message').html("Error: Could not process the button submission."); // Shows an error message
+                    }
+                });
+            });
+
+
+            // code for submitting main form
+            $('#form2').on('submit', function (e) {
+                e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
+                $.ajax({
+                    url: 'v2.php', // The URL where the data will be sent (in this case, 'a.php')
+                    type: 'POST', // The method used to send data (POST is typically used for form submissions)
+                    data: $(this).serialize(), // Takes all the form data and formats it for sending
+                    success: function (response) {
+                        // This function runs if the request is successful
+                        // Shows the server's response message in the div with id 'message'
+                        $('#message').html(response);
+                    },
+                    error: function () {
+                        // This function runs if there’s an error with the request
+                        $('#message').html("Error: Could not process the form submission."); // Shows an error message
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>
