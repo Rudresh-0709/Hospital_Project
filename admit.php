@@ -26,19 +26,26 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
         rel="stylesheet">
     <style>
         html {
-            overflow-y: hidden;
-            height:100%;
+            height:100vh;
             margin:0;
             padding:0;
         }
-
+        section {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100%;
+        }
         body {
             height: 100%;
             background-image: linear-gradient(to right, #9ce7d3 0%, #abeff7 50%, #63c1d8 100%);
-            display: flex;
+            /* display: flex;
             justify-content: center;
             flex-direction: column;
-            align-items: center;
+            align-items: center; */
+        }
+        img{
+            height:80%
         }
 
         .patientform {
@@ -148,7 +155,7 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             width: 50%;
             /* background-image: radial-gradient(#19cbf876 0%, #3eb2ffc1 50%, #007efcd7 100%); */
             background-color: rgba(27 ,73 ,73 , 70%);
-            position: absolute;
+            position: fixed;
             bottom: -100%;
             left: 25%;
             display: flex;
@@ -203,6 +210,7 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
 </head>
 
 <body>
+    <section>
     <div class="patientform">
         <h2>Patient Admission Form</h2>
         
@@ -222,6 +230,9 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>
+    <img src="doctor-giving-treatment-to-corona-positive-woman.png" alt="">
+    </section>
+    
     <div class="nav">
         <a href="admit.php" class="navlink">
             <i class="fa-solid fa-hospital"></i>

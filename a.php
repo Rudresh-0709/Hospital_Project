@@ -19,10 +19,18 @@
 
 
     try{
-    $stmt = $conn->prepare("INSERT INTO admit (patient_id, date_in) values (?,?)");
+    $stm = $conn->prepare("SELECT bed_id from beds where status = 1 LIMIT 1"); // fetch bed that is available;
+    if($stm->execute()){
+        $res = $stm->get_result()->fetch_assoc();
+        $bed = $res['bed_id'];
+    }
+
+
+
+    $stmt = $conn->prepare("INSERT INTO admit (patient_id, date_in, bed_id) values (?,?,?)");
     // prepare statement used to insert the form data into the user_details table
 
-    $stmt->bind_param("ss", $pid, $date_in);
+    $stmt->bind_param("ssi", $pid, $date_in, $bed);
     //  This ensures that the data is properly escaped, preventing SQL injection attacks.
     // "ssss" indicates all parameters are strings.
 
@@ -31,6 +39,13 @@
         //  executing the SQL query with the actual values instead of the placeholders(?).
         echo "<div class=\"valid\">";
         echo "<div> Entry Succesfull </div>";
+        echo "<div class=\"valid\">";
+        echo "Bed Allocated - $bed</div>";
+
+        $stm1 = $conn->prepare("UPDATE beds set status = 0 where bed_id = ?");
+        $stm1->bind_param("i", $bed);
+        $stm1->execute();
+        
         $flag = 1;    // admission succesfull, now can run badge allocation code
     }
     // else{
@@ -47,12 +62,13 @@ catch(mysqli_sql_exception $e){
     }
     else{
         // for generic errors
-        echo "<div class=\"invalid\">Error in admitting !</div>";
+        echo "<div class=\"invalid\">Error in admitting ! $e</div>";
     }
 }
 
 
 // code to allocate 3 visiting badges to the admitted patient
+// once admission succesfull
 if($flag){
     try{
         $stmt = $conn->prepare("SELECT admit_id, status from admit where patient_id = ? and status = 1");
