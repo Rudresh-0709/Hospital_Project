@@ -79,31 +79,47 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             font-weight: 800;
             font-family: "Poppins";
         }
+        .inputtype {
+            position: relative;
+            margin-bottom:50px;
+        }
+
         label {
-            font-weight: 500;
-            text-shadow: 2px 2px 2px rgba(0, 255, 204, 0.522);
+            position: absolute;
+            top: 10px;
+            left: 13px;
+            font-weight: 200;
+            font-size: smaller;
+            color: rgb(72, 72, 72);
         }
 
         input{
-            padding:0px 8px;
-            height:1.8em;
+            width: 250px;
+            height: 30px;
             margin-top: 0.5em;
-            font-family:"Montserrat Alternates", sans-serif;
+            font-family: "Montserrat Alternates", sans-serif;
             border-radius: 7px;
             outline: none;
             border-color: transparent;
             background-color: rgba(0, 0, 0, 0.2);
             color: white;
+            text-align: center;
         }
-
+        input:hover~label,
+        input:focus~label,
+        input:valid~label {
+            transition: all 0.8s ease;
+            top: -25px;
+            font-size: medium;
+            color: white;
+            font-weight: 400;
+        }
         #submit{
-            width:10em;
-            margin-top: 4em;
-            margin-bottom: 2em;
-            height:3em;
+            width:200px;
+            margin-bottom: 40px;
+            height:2em;
             color:white;
-            font-size: 13px;
-            color:white;
+            font-size: 17px;
             border-radius: 20px;
             background-color: rgb(106 197 219);
             box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.2);
@@ -125,7 +141,7 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             border-radius:10px;
             color:white;
             text-decoration: none;
-            padding:2px;
+            padding:4px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -139,9 +155,8 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             font-size: larger;
         }
         .labeli{
-            padding: 2px;
-            width:45%;
-            display:flex;
+            width: fit-content;
+            display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 1em;
@@ -193,9 +208,9 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
         a {
             text-decoration: none;
             color: white;
-            font-size: larger;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+            font-weight: 50;
+            font-size: large;
+            font-family: "Montserrat Alternates", sans-serif;
         }
 
         .navlink i {
@@ -203,8 +218,9 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             padding: 0;
             color: white;
             font-size: larger;
-            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+            font-weight: 700;
         }
+        h4{font-weight: 300;}
     </style>
 
 </head>
@@ -215,16 +231,22 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
         <h2>Patient Admission Form</h2>
         
         <form action="a.php" method="POST" id="admitForm">
-            <label for="patient_id">Patient ID:</label>
-            <div class="labeli">
-                <input type="text" id="patient_id" name="patient_id" value="<?php echo "".$patient_id.""; ?>" required>
-                <i class="fa-regular fa-id-badge"></i>
+            <div class="inputtype">
+                <div class="labeli">
+                    <input type="text" id="patient_id" name="patient_id" value="<?php echo "".$patient_id.""; ?>" required>
+                    <label for="patient_id">Patient ID:</label>
+                    <i class="fa-regular fa-id-badge"></i>
+                </div>
+
             </div>
             
-            <label for="date_in">Date in :</label>
-            <div class="labeli">
-                <input type="date" name="date_in" id="date_in">
-                <i class="fa-solid fa-calendar-days"></i>
+            <div class="inputtype">
+                <div class="labeli">
+                    <input type="date" name="date_in" id="date_in" required>
+                    <label for="date_in">Date in :</label>
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+
             </div>
 
             <input type="submit" value="Submit" id="submit">
@@ -234,15 +256,18 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
     </section>
     
     <div class="nav">
-        <a href="admit.php" class="navlink">
+        <a href="patient.html" class="navlink">
             <i class="fa-solid fa-hospital"></i>
-            <h4>Admit</h4>
+            <h4>patient</h4>
         </a>
         <a href="visitor.html" class="navlink">
             <i class="fa-solid fa-hospital-user"></i>
             <h4>Visitor</h4>
         </a>
-
+        <a href="discharge.html" class="navlink">
+            <i class="fa-solid fa-house-medical-circle-check"></i>
+            <h4>Discharge</h4>
+        </a>
         <a href="index.html" class="navlink">
             <i class="fa-solid fa-house"></i>
             <h4>Home</h4>
