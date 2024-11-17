@@ -1,6 +1,6 @@
 <?php
 // Get patient_id from the URL query string
-$patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
+$patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch only if it is set or set to ""
 ?>
 <!-- had to make this page php so as to  -->
 <!-- get the patient_id from URL sent by patient.html and autofill patient_id input with that id -->
@@ -220,7 +220,35 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             font-size: larger;
             font-weight: 700;
         }
+
         h4{font-weight: 300;}
+
+        #message {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap:25px;
+            .invalid {
+                color: red;
+                font-weight: 700;
+                padding: 0 40px;
+                text-align: center;
+            }
+            
+            button{
+            width:200px;
+            margin-bottom: 40px;
+            height:2em;
+            color:white;
+            font-size: 17px;
+            border-radius: 20px;
+            border-color:transparent;
+            background-color: rgb(106 197 219);
+            box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+            }
+        }
     </style>
 
 </head>
@@ -234,6 +262,7 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             <div class="inputtype">
                 <div class="labeli">
                     <input type="text" id="patient_id" name="patient_id" value="<?php echo "".$patient_id.""; ?>" required>
+                    <!-- ^ put the fetched patient_id from top line into value of patient_input, so that this info can be sent to a.php via form -->
                     <label for="patient_id">Patient ID:</label>
                     <i class="fa-regular fa-id-badge"></i>
                 </div>
@@ -250,6 +279,9 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
             </div>
 
             <input type="submit" value="Submit" id="submit">
+            <div id="message">
+
+    </div>
         </form>
     </div>
     <img src="doctor-giving-treatment-to-corona-positive-woman.png" alt="">
@@ -257,7 +289,7 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
     
     <div class="nav">
         <a href="patient.html" class="navlink">
-            <i class="fa-solid fa-hospital"></i>
+            <i class="fa-solid fa-bed-pulse"></i>
             <h4>patient</h4>
         </a>
         <a href="visitor.html" class="navlink">
@@ -274,9 +306,7 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';
         </a>
     </div>
 
-    <div id="message">
-
-    </div>
+    
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
