@@ -72,7 +72,8 @@
             font-weight: 800;
             font-family: "Poppins";
         }
-        .inputname{
+
+        .inputname {
             position: relative;
         }
 
@@ -101,13 +102,13 @@
             color: white;
         }
 
-        input:valid~label ,
+        input:valid~label,
         input:focus~label,
         input:hover~label {
             transition: all 0.8s ease;
-            top:-25px;
+            top: -25px;
             font-size: medium;
-            color:white;
+            color: white;
             font-weight: 400;
         }
 
@@ -213,12 +214,36 @@
             color: wheat;
             font-family: "Montserrat Alternates", sans-serif;
         }
-        h4{font-weight: 300;}
+
+        h4 {
+            font-weight: 300;
+        }
 
         #message {
-            position: relative;
-            bottom: 130px;
-            left: 40vw;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap:25px;
+            .invalid {
+                color: red;
+                font-weight: 700;
+                padding: 0 40px;
+                text-align: center;
+            }
+            
+            button{
+            width:200px;
+            margin-bottom: 40px;
+            height:2em;
+            color:white;
+            font-size: 17px;
+            border-radius: 20px;
+            border-color:transparent;
+            background-color: rgb(106 197 219);
+            box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+            }
         }
     </style>
 
@@ -229,8 +254,8 @@
         <div class="patientform">
             <h2>Patient Registration Form</h2>
             <form action="patient.php" method="POST" id="patientForm">
-                
-                
+
+
                 <div class="inputname">
                     <div class="labeli">
                         <input type="text" id="patient_name" name="patient_name" onfocus="labelup()" required>
@@ -249,14 +274,14 @@
                 </div>
 
                 <input type="submit" value="Submit" id="submit">
+                <div id="message">
+                    <!-- error code will come here from patient.php via ajax-->
+                </div>
             </form>
         </div>
         <img src="routine-health-checkup.png" alt="">
     </section>
 
-    <div id="message">
-        <!-- error code will come here from patient.php via ajax-->
-    </div>
 
     <div class="nav">
         <a href="admit.php" class="navlink">

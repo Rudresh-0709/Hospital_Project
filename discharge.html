@@ -290,6 +290,33 @@
             font-family: "Montserrat Alternates", sans-serif;
         }
         h4{font-weight: 300;}
+
+        #message {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap:25px;
+            .invalid {
+                color: red;
+                font-weight: 700;
+                padding: 0 40px;
+                text-align: center;
+            }
+            
+            button{
+            width:200px;
+            margin-bottom: 40px;
+            height:2em;
+            color:white;
+            font-size: 17px;
+            border-radius: 20px;
+            border-color:transparent;
+            background-color: rgb(106 197 219);
+            box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgb(0, 255, 162);
+            }
+        }
     </style>
 
 </head>
@@ -330,16 +357,19 @@
                 </div>
                 <div id="admit_box">Admit ID : </div>
                 <!-- <label for="admit_id">Admit ID :</label>
-            <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
-
+                <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
+                
                 <input type="submit" value="Submit" id="submit">
+                <div id="message">
+            
+                </div>
             </form>
         </div>
         <img src="joyful-female-doctor.png" alt="">
     </section>
     <div class="nav">
         <a href="patient.html" class="navlink">
-            <i class="fa-solid fa-hospital-user"></i>
+            <i class="fa-solid fa-bed-pulse"></i>
             <h4>Patient</h4>
         </a>
 
@@ -355,9 +385,6 @@
             <i class="fa-solid fa-house"></i>
             <h4>Home</h4>
         </a>
-    </div>
-    <div id="message">
-
     </div>
 
     </div>
