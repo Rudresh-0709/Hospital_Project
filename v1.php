@@ -1,10 +1,12 @@
-<!-- !! TRY CATCH IMPORTANCE !! -->
- <!-- when there was any error occuring from stmt->execute line , the error would itself terminate the code and give its own error msg 
-  ... does not go to else block where i was handling error 
-  This shows the Need for try and catch as it catches such error and provides the steps that the program should execute(handling) 
-  Thus it helps to not terminate the code and just display the error-->
 
   <?php
+//   !! TRY CATCH IMPORTANCE !!
+//   when there was any error occuring from stmt->execute line , the error would itself terminate the code and give its own error msg 
+//    ... does not go to else block where i was handling error 
+//    This shows the Need for try and catch as it catches such error and provides the steps that the program should execute(handling) 
+//    Thus it helps to not terminate the code and just display the error
+
+ 
     require('connection.php');
     if($conn->connect_error){ 
         die("connection Failed : " . $conn->connect_error);
@@ -32,45 +34,25 @@
     //  This ensures that the data is properly escaped, preventing SQL injection attacks.
     // "ssss" indicates all parameters are strings.
     $stmt->execute();
-    $result = $stmt->get_result()->fetch_assoc();   //fetch_assoc is used to fetch EACH row as an associative array eg. each row will be like["aid":xxx]
-    echo "<span id=\"admit_id\">" .$result['aid']. "</span>";
+    $res = $stmt->get_result();
+    if($res->num_rows > 0){
+        // means admit_id mili
+        $result = $res->fetch_assoc();   //fetch_assoc is used to fetch EACH row as an associative array eg. each row will be like["aid":xxx]
+        echo json_encode(["flag"=>true, "message"=>"<span id=\"admit_id\">" .$result['aid']. "</span>"]);
+    }
+    else{
+        echo json_encode(["flag" => false, "message" => "<div class=\"invalid\">No admit entry found for $pname <br> Patient ID - $pid </div>"]);
+    }
 }
 catch(mysqli_sql_exception $e){
     if($e->getCode() == 1062){
-        echo "<div class=\"invalid\"> Aadhar Already registered. New patient cannot be made with same aadhar id</div>";
+        echo json_encode(["flag"=>false, "message"=>"<div class=\"invalid\"> Aadhar Already registered. New patient cannot be made with same aadhar id</div>"]);
     }
     else{
-        echo "<div class=\"invalid\"> Error!  $e </div>";
-        echo $e->getCode();    // helps to get error code so i can handle them accordingly
+        echo json_encode(["flag"=>false, "message"=>"<div class=\"invalid\"> Error!  $e </div>"]);
+        // echo $e->getCode();    // helps to get error code so i can handle them accordingly
     }
     
 }
 
-// code fetching badge_id from admit_id
-// shouldve gone for another file
-try{
-    $stmt = $conn->prepare("SELECT badge_id as bid from badges where admit_id = ?");
-    // prepare statement used to insert the form data into the user_details table
 
-    $stmt->bind_param("i", $result['aid']);
-    //  This ensures that the data is properly escaped, preventing SQL injection attacks.
-    // "ssss" indicates all parameters are strings.
-    $stmt->execute();
-    $result2 = $stmt->get_result();
-    while ($row = $result2->fetch_assoc()) {
-        echo "<option value=\"".$row['bid']."\">".$row['bid']."</option>";
-    }
-
-    $stmt->close();
-    $conn->close();
-}
-catch(mysqli_sql_exception $e){
-    if($e->getCode() == 1062){
-        echo "<div class=\"invalid\"> Aadhar Already registered. New patient cannot be made with same aadhar id</div>";
-    }
-    else{
-        echo "<div class=\"invalid\"> Error!  $e </div>";
-        echo $e->getCode();    // helps to get error code so i can handle them accordingly
-    }
-    
-}
