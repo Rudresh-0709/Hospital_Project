@@ -18,53 +18,59 @@
         body{
             height:100%;
             width:100%;
-            background-image: linear-gradient(to right, #74ffda 0%, #7afcb7 50%, #31ed9c 100%);
-            background-size: cover;
-            background-repeat: no-repeat;
+            background-color: whitesmoke;
             display:flex;
             justify-content: center;
             align-items: center;
+            background-image: url("Coronavirus\ Disease\ \(1\).gif");
+            background-size:inherit;
+            background-repeat: no-repeat;
+            background-position: center;
         }
         .maindiv{
-            min-height:30em;
-            width:30em;
-            background-image: url("svg (1).png");
-            background-size: cover;
+            height:80%;
+            width:80%;
+            background-size:cover;
+            
             border-radius: 10px;
             display:flex;
             flex-direction: column;
-            justify-content: center;
+            
             align-items: center;
-            box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.149);
+            
+        }
+        .adiv{
+            display:flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap:2em;
+            width:80%;
         }
         h1{
             font-family:"Montserrat Alternates", sans-serif;
-            color: white;
-            margin-bottom: 3em;
+            color: rgb(34, 90, 94);
+            margin-bottom: 9em;
             font-size:40px;
-            text-shadow: 3px 3px 2px rgba(0, 131, 46, 0.46);
+            text-shadow: 2px 2px 1px rgba(0, 131, 46, 0.46);
         }
         a{
             font-family:"Montserrat Alternates", sans-serif;
             margin-bottom: 2em;
-            border:0.8px solid rgba(85, 85, 85, 0.404);
-            box-shadow:0.05px 0.05px 2px 0.05px rgb(0, 104, 40);
-            height:2em;
+            box-shadow:0.05px 0.05px 2px 0.05px rgb(118, 118, 118);
+            height:5em;
             width:60%;
             border-radius:10px;
-            color:white;
+            color:rgb(44, 109, 109);
             text-decoration: none;
             padding:6px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: x-large;
-            background-color: rgba(85, 85, 85, 0.188);
-            text-shadow: 2px 2px 2px rgba(0, 204, 201, 0.522);
-        }
-        a:hover{
-            transform: scale(1.06);
-            transition: all 0.5s ease-in;
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.432);
+            text-shadow: 0.5px 0.5px 1px rgba(40, 40, 40, 0.522);
         }
     </style>
 </head>
@@ -72,9 +78,13 @@
 <body>
     <div class="maindiv">
         <h1> Select an Option : </h1>
-        <a href="patient.html" > New Patient</a>
-        <a href="admit.php" class="patient">Admit</a>
-        <a href="visitor.html" class="visitor">Visitor</a>
+        <div class="adiv">
+            <a href="patient.html" > New Patient</a>
+            <a href="admit.php" class="patient">Admit</a>
+            <a href="visitor.html" class="visitor">Visitor</a>
+            <a href="discharge.html">Discharge</a>
+        </div>
+
     </div>
 </body>
 </html>
