@@ -30,8 +30,8 @@
             height: 100%;
             background-image: linear-gradient(to right, #9ce7d3 0%, #abeff7 50%, #63c1d8 100%);
             /* display: flex;
-            justify-content: center;
-            flex-direction: column; */
+                justify-content: center;
+                flex-direction: column; */
             align-items: center;
             background-size: contain;
         }
@@ -115,11 +115,11 @@
             transition: all 0.8s ease;
             top: -25px;
             font-size: medium;
-            color:white;
+            color: white;
             font-weight: 400;
         }
 
-        
+
 
 
         select:valid~#badgelabel,
@@ -163,7 +163,7 @@
 
 
         #submit {
-            width:200px;
+            width: 200px;
             margin-bottom: 40px;
             height: 2em;
             color: white;
@@ -267,7 +267,8 @@
             font-size: larger;
             font-weight: 700;
         }
-        h4{
+
+        h4 {
             font-weight: 300;
         }
 
@@ -291,6 +292,20 @@
             color: wheat;
             font-family: "Montserrat Alternates", sans-serif;
         }
+
+        #badge_select {
+            text-align: center;
+        }
+
+        #message {
+            margin-bottom: 20px;
+            font-weight: 500;
+
+            .invalid {
+                color: red;
+                font-weight: 700;
+            }
+        }
     </style>
 
 </head>
@@ -306,7 +321,7 @@
                 <div class="inputtype">
 
                     <div class="labeli">
-                        <input type="numeric" id="patient_name" value="" name="patient_name" required>
+                        <input type="numeric" id="patient_name" name="patient_name" required>
                         <i class="fa-regular fa-id-badge"></i>
                         <label for="patient_name">Patient Name :</label>
 
@@ -331,7 +346,7 @@
                 </div>
                 <div id="admit_box">Admit ID : </div>
                 <!-- <label for="admit_id">Admit ID :</label>
-            <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
+                <input type="number" name="admit_id" id="admit_id"  step="1" style="appearance: textfield;" required> -->
 
 
                 <div class="inputtype">
@@ -341,17 +356,20 @@
                             <option value=""></option>
                         </select>
                         <i class="fa-solid fa-ticket" style="padding-top: 2px;"></i>
-                        <label for="badge_select" id="badgelabel" ">Badge ID :</label>
+                        <label for="badge_select" id="badgelabel">Badge ID :</label>
+                    </div>
                 </div>
-            </div>
-                <input type=" submit" value="Submit" id="submit">
+                <input type="submit" value="Submit" id="submit">
+                <div id="message">
+
+                </div>
             </form>
         </div>
         <img src="protect-your-family-during-corona.png" alt="">
     </section>
     <div class="nav">
         <a href="patient.html" class="navlink">
-            <i class="fa-solid fa-hospital-user"></i>
+            <i class="fa-solid fa-bed-pulse"></i>
             <h4>Patient</h4>
         </a>
 
@@ -368,11 +386,8 @@
             <h4>Home</h4>
         </a>
     </div>
-    <div id="message">
 
-    </div>
 
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -407,8 +422,8 @@
             filter_name_arr.forEach(element => {
                 // names is the select input
                 $('#names').append(`
-                <option value="${element.name}">${element.name}</option>
-                `)
+                    <option value="${element.name}">${element.name}</option>
+                    `)
             });
         });
 
@@ -429,13 +444,52 @@
                     data: $(this).serialize(), // Takes all the form data and formats it for sending
                     success: function (response) {
                         // This function runs if the request is successful
-                        $('#admit_box').html(response); // Shows the server's response message in the div with id 'message'
-                        $('#admit').val($('#admit_id').html());
-                        $('#badge_select').html(response);
+                        var final = JSON.parse(response);
+
+                        // true indicates that current admit_id was found
+                        if (final.flag == true) {
+                            $('#admit_box').html(final.message); // Shows the server's response message in the div with id 'message'
+                            $('#admit').val($('#admit_id').html());
+                            // $('#badge_select').html(final.content); // HANDLE !!
+
+
+                            //Nested ajax calls -- so if admit_id fetched successfully, 
+                            // then only go for badge fetching using that admit_id
+                            $.ajax({
+                                url: 'v3.php',
+                                type: 'POST', // The method used to send data (POST is typically used for form submissions)
+                                data: { aid: $('#admit').val() }, // it is a object(dictionary) with key-value pair
+                                success: function (msg) {
+                                    console.log(msg);
+
+                                    // This function runs if the request is successful
+                                    var final1 = JSON.parse(msg);
+
+                                    // true indicates that current admit_id was found
+                                    if (final1.flag == true) {
+                                        $('#badge_select').empty();
+                                        final1.message.forEach(element =>
+                                            // .message holds an array of all the badges
+                                            $('#badge_select').append(`<option value="${element}">${element}</option>`)
+                                        )
+                                    }
+                                    else {
+                                        $('#message').html(final1.message);
+                                    }
+                                },
+                                error: function () {
+                                    // This function runs if there’s an error with the request
+                                    $('#message').html("Error: Could not process Inner Ajax submission."); // Shows an error message
+                                }
+                            });
+                        }
+                        else {
+                            $('#message').html(final.message);
+                        }
                     },
                     error: function () {
                         // This function runs if there’s an error with the request
-                        $('#message').html("Error: Could not process the button submission."); // Shows an error message
+                        $('#message').html("Error: Could not process Ajax submission."); // Shows an error message
                     }
                 });
             });
