@@ -18,20 +18,19 @@
         body{
             height:100%;
             width:100%;
-            background-color: whitesmoke;
+            background-color: white;
             display:flex;
             justify-content: center;
             align-items: center;
-            background-image: url("Coronavirus\ Disease\ \(1\).gif");
-            background-size:inherit;
+            /* background-image: url("Group\ of\ doctors\ standing\ at\ hospital\ building.jpg");
+            background-size:75%;
             background-repeat: no-repeat;
-            background-position: center;
+            background-position: bottom; */
         }
         .maindiv{
-            height:80%;
-            width:80%;
-            background-size:cover;
-            
+            /* background-color: rgba(0, 0, 0, 0.219); */
+            height:100%;
+            width:100%;
             border-radius: 10px;
             display:flex;
             flex-direction: column;
@@ -44,16 +43,18 @@
             flex-direction: row;
             justify-content: space-around;
             align-items: center;
-            gap:2em;
-            width:80%;
+            gap:3em;
+            width:90%;
+            z-index: 1;
         }
         h1{
             font-family:"Montserrat Alternates", sans-serif;
             color: rgb(34, 90, 94);
-            margin-bottom: 9em;
             font-size:40px;
             text-shadow: 2px 2px 1px rgba(0, 131, 46, 0.46);
+            z-index: 1;
         }
+
         a{
             font-family:"Montserrat Alternates", sans-serif;
             margin-bottom: 2em;
@@ -72,18 +73,27 @@
             background-color: rgba(255, 255, 255, 0.432);
             text-shadow: 0.5px 0.5px 1px rgba(40, 40, 40, 0.522);
         }
+        a:hover{
+            transform: scale(1.1);
+            transition: all 0.5s ease-in;
+        }
+        img{
+            width: 80%; 
+            position: absolute;    
+        }
     </style>
 </head>
 
 <body>
     <div class="maindiv">
-        <h1> Select an Option : </h1>
+        <h1> Admin Panel</h1>
         <div class="adiv">
             <a href="patient.html" > New Patient</a>
             <a href="admit.php" class="patient">Admit</a>
             <a href="visitor.html" class="visitor">Visitor</a>
             <a href="discharge.html">Discharge</a>
         </div>
+        <img src="web_img/Group of doctors standing at hospital building.jpg" alt="">
 
     </div>
 </body>
