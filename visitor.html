@@ -109,14 +109,16 @@
 
         }
 
+        
+
         input:hover~label,
         input:focus~label,
         input:valid~label {
-            transition: all 0.8s ease;
             top: -25px;
             font-size: medium;
             color: white;
             font-weight: 400;
+            transition: all 0.8s ease;
         }
 
 
@@ -125,11 +127,11 @@
         select:valid~#badgelabel,
         select:focus~#badgelabel,
         select:hover~#badgelabel {
-            transition: all 0.8s ease;
             top: -25px;
             font-size: medium;
             color: #ffffff;
             font-weight: 400;
+            transition: all 0.8s ease;
         }
 
         option {
@@ -353,7 +355,7 @@
 
                     <div class="labeli" style="margin-bottom: 50px;">
                         <select name="badge_select" id="badge_select" required>
-                            <option value=""></option>
+                            <!-- <option value=""></option> -->
                         </select>
                         <i class="fa-solid fa-ticket" style="padding-top: 2px;"></i>
                         <label for="badge_select" id="badgelabel">Badge ID :</label>
@@ -427,10 +429,6 @@
             });
         });
 
-        // code replacing the search input with the selected input(name) from drop down
-        $('#names').on('input', function () {
-            $('#patient_name').val($('#names').val());
-        })
 
         $(document).ready(function () {
             // This line means: once the HTML page is fully loaded, the function inside will run
@@ -485,6 +483,9 @@
                         }
                         else {
                             $('#message').html(final.message);
+                            $('#patient_name').val(" ");
+                            $('#admit').val(" ");
+                            $('#badge_select').val(" ");
                         }
                     },
                     error: function () {
@@ -494,6 +495,10 @@
                 });
             });
 
+            // code replacing the search input with the selected input(name) from drop down
+            $('#names').on('click', function () {       // had to use 'click' as using input wasnt allowing to select first option at one go
+                $('#patient_name').val($('#names').val());
+            })
 
             // code for submitting main form
             $('#form2').on('submit', function (e) {
