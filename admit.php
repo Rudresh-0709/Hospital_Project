@@ -248,6 +248,13 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
             box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.2);
             text-shadow: 1px 1px 2px rgb(0, 255, 162);
             }
+            #email_msg{
+                text-align: center;
+                color:green;
+                h4{
+                    margin:-12px;
+                }
+            }
         }
     </style>
 
@@ -266,8 +273,17 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
                     <label for="patient_id">Patient ID:</label>
                     <i class="fa-regular fa-id-badge"></i>
                 </div>
-
             </div>
+
+            <div class="inputtype">
+                <div class="labeli">
+                    <input type="text" id="email_id" name="email_id" value=" " required>
+                    <!-- ^ put the fetched patient_id from top line into value of patient_input, so that this info can be sent to a.php via form -->
+                    <label for="email_id">Email ID</label>
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+            </div>
+
             
             <div class="inputtype">
                 <div class="labeli">
@@ -280,8 +296,8 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
 
             <input type="submit" value="Submit" id="submit">
             <div id="message">
-
-    </div>
+        
+            </div>
         </form>
     </div>
     <img src="doctor-giving-treatment-to-corona-positive-woman.png" alt="">
@@ -316,6 +332,8 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
             const today = new Date(); //system date
             date_val = `${today.getFullYear() }-${ today.getMonth() + 1 }-${ today.getDate() }`;
             document.getElementById("date_in").value = date_val;
+            var admit = 0;
+            var bed = 0;
 
 
             // This line means: once the HTML page is fully loaded, the function inside will run
@@ -329,6 +347,39 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
                     success: function (response) {
                         // This function runs if the request is successful
                         $('#message').html(response); // Shows the server's response message in the div with id 'message'
+                        admit = $('#admit_store').text();
+                        bed = $('#bed_store').text();
+
+                        // had to take in inside this ajax call as otherwise ... this second ajax call was being made .. before complete executiion of the first (outer one)
+                        // which would lead to fetch the admit id from #admit_store before it got its value from first ajax code.
+                        $.ajax({
+                        url: 'email.php', // The URL where the data will be sent (in this case, 'a.php')
+                        type: 'POST', // The method used to send data (POST is typically used for form submissions)
+                        data: {
+                            aid : admit,
+                            bid : bed,
+                            pid : $('#patient_id').val(),
+                            email_id : $('#email_id').val()
+                        },
+                        success: function (response1) {
+                            console.log("Ye response aya", response1);
+                            var final = JSON.parse(response1);
+                            // This function runs if the request is successful
+                            if(final.flag){
+                                $('#message').append(final.cont); // Shows the server's response message in the div with id 'message'
+                                console.log(final.cont);
+                            }
+                            else{
+                                $('#message').append(final.cont); // Shows the server's response message in the div with id 'message'
+                                console.log(final.cont);
+                            }
+                        },
+                        error: function () {
+                            // This function runs if there’s an error with the request
+                            $('#message').html("Error: Could not process the form submission."); // Shows an error message
+                            console.log("AJAX Error bro");
+                        }
+                    });
                     },
                     error: function () {
                         // This function runs if there’s an error with the request
