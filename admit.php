@@ -50,7 +50,7 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
 
         .patientform {
             min-height: 30em;
-            background-image: url(wave2.png);
+            background-image: url(web_img/wave2.png);
             background-position: center;
             background-size: cover;
             height: fit-content;
@@ -300,7 +300,7 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
             </div>
         </form>
     </div>
-    <img src="doctor-giving-treatment-to-corona-positive-woman.png" alt="">
+    <img src="web_img/doctor-giving-treatment-to-corona-positive-woman.png" alt="">
     </section>
     
     <div class="nav">
