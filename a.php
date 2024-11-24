@@ -43,13 +43,14 @@
             // "ssss" indicates all parameters are strings.
         
             if($stmt->execute()){
+                $aid = $conn->insert_id;
                 //  It inserts the provided user data into the database,
                 //  executing the SQL query with the actual values instead of the placeholders(?).
                 echo "<div class=\"valid\">";
                 echo "<div> Entry Succesfull </div>";
-                echo "<div class=\"valid\">";
-                echo "Bed Allocated - $bed</div>";
-        
+                echo "<div id=\"bed_store\">Bed Allocated - $bed</div>";
+                echo "<div id=\"admit_store\" style=\"display:none;\">$aid</div></div>";
+
                 $stm1 = $conn->prepare("UPDATE beds set status = 0 where bed_id = ?");
                 $stm1->bind_param("i", $bed);
                 $stm1->execute();
@@ -102,9 +103,9 @@
                 }
                 if($temp == 1){
                     //  It inserts the provided user data into the database,
-                    //  executing the SQL query with the actual values instead of the placeholders(?).
-                    echo "<div class=\"valid\">";
-                    echo "3 visiting badges allocated </div>";
+                    // //  executing the SQL query with the actual values instead of the placeholders(?).
+                    // echo "<div class=\"valid\">";
+                    // echo "3 visiting badges allocated </div>";
                 }
                 // else{
                 //     echo "Error : " . $stmt->error;

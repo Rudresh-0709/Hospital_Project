@@ -333,7 +333,7 @@
                 $.ajax({
                     url: 'patient.php', // The URL where the data will be sent (in this case, 'a.php')
                     type: 'POST', // The method used to send data (POST is typically used for form submissions)
-                    data: $(this).serialize(), // Takes all the form data and formats it for sending
+                    data: $(this).serialize(), // Takes all the form data and formats it for sending (converts into string format)
                     success: function (response) {
                         var final = JSON.parse(response);
                         // PHP script returns a JSON response

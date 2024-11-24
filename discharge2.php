@@ -27,7 +27,6 @@
 catch(mysqli_sql_exception $e){
     echo "<div class=\"invalid\"> Error!  $e </div>";
     echo $e->getCode();    // helps to get error code so i can handle them accordingly
-
 }
 
 if($flag){
@@ -45,7 +44,7 @@ if($flag){
         //  This ensures that the data is properly escaped, preventing SQL injection attacks.
         // "ssss" indicates all parameters are strings.
         if($stmt2->execute()){
-            echo "<div class=\"valid\">Bed khali</div>";
+            // echo "<div class=\"valid\">Bed khali</div>";
         }
     }
     catch(mysqli_sql_exception $e){
