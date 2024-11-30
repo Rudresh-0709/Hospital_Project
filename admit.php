@@ -367,7 +367,9 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
                             // This function runs if the request is successful
                             if(final.flag){
                                 $('#message').append(final.cont); // Shows the server's response message in the div with id 'message'
+                                $('#message').append(final.qr);
                                 console.log(final.cont);
+                                console.log(final.qr);
                             }
                             else{
                                 $('#message').append(final.cont); // Shows the server's response message in the div with id 'message'
