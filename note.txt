@@ -8,3 +8,8 @@ get_result cant be run twice on same variable
 admit.php
 // had to take in inside this ajax call as otherwise ... this second ajax call was being made .. before complete executiion of the first (outer one)
 // which would lead to fetch the admit id from #admit_store before it got its value from first ajax code.
+
+
+had to use composer to download the proper QR code lib
+
+foreach ($badge_ids as $index => $baid) {}   -- syntax
