@@ -75,7 +75,7 @@ else{
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication for server
         $mail->Username   = 'checksafehospital@gmail.com';                     //SMTP username
         // $mail->Password   = 'eijritnbwrbxrfcm';                           //SMTP password (google app password)
-        $mail->Password   = 'ldpqssqltwhqntxp';
+        $mail->Password   = '';        // fill with respective app password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;           //Enable implicit TLS encryption
         $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
