@@ -48,7 +48,7 @@ if($flag){
         }
     }
     catch(mysqli_sql_exception $e){
-        echo "<div class=\"invalid\"> Error!  $e </div>";
+        echo "<div class=\"invalid\"> Error in discharge 2!  $e </div>";
         echo $e->getCode();    // helps to get error code so i can handle them accordingly    
     }
 

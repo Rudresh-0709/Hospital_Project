@@ -308,10 +308,10 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
             <i class="fa-solid fa-bed-pulse"></i>
             <h4>patient</h4>
         </a>
-        <a href="visitor.html" class="navlink">
+        <!-- <a href="visitor.html" class="navlink">
             <i class="fa-solid fa-hospital-user"></i>
             <h4>Visitor</h4>
-        </a>
+        </a> -->
         <a href="discharge.html" class="navlink">
             <i class="fa-solid fa-house-medical-circle-check"></i>
             <h4>Discharge</h4>

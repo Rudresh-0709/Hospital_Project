@@ -30,10 +30,10 @@
         // "ssss" indicates all parameters are strings.
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();   //fetch_assoc is used to fetch EACH row as an associative array eg. each row will be like["aid":xxx]
-        echo "<span id=\"admit_id\">" .$result['aid']. "</span>";
+        echo "<span id=\"admit_id\">" .$result['aid']. " </span>";
     }
     catch(mysqli_sql_exception $e){
-            echo "<div class=\"invalid\"> Error!  $e </div>";
+            echo "<div class=\"invalid\"> Error in discharge 1!  $e </div>";
             echo $e->getCode();    // helps to get error code so i can handle them accordingly
     }
 ?>

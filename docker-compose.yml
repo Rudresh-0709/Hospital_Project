@@ -1,7 +1,7 @@
 services:
   app:
     build: .
-    container_name: hospital-app
+    container_name: hospital
     ports:
       - "8080:80"
     volumes:
