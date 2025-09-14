@@ -1,5 +1,4 @@
-
-  <?php
+<?php
     header('Content-Type: application/json');
 //    !! TRY CATCH IMPORTANCE !! 
 //    when there was any error occuring from stmt->execute line , the error would itself terminate the code and give its own error msg 

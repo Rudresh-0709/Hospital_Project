@@ -1,17 +1,30 @@
 <?php 
 
-$servername = "localhost";
-$username = "root";
-$password = "maria";
+// $servername = "localhost";
+// $username = "root";
+// $password = "maria";
+// $dbname = "hospital";
+
+// require('C:\xampp\htdocs\Hospital\DOCS\fpdf\fpdf.php');  //lightweight PHP library for generating PDF files.
+// require 'DOCS/PHPMailer/src/PHPMailer.php';  // main file for email sending
+// require 'DOCS/PHPMailer/src/Exception.php';  // handle exception thrown by PHPmailer
+// require 'DOCS/PHPMailer/src/SMTP.php';   // functionality for sending emails using an SMTP server
+// // require 'vendor/autoload.php';
+// require 'C:/xampp/htdocs/Hospital/DOCS/phpqrcode-master/qrlib.php'; // Include the library for QR code
+
+$servername = "db";   // because in docker-compose, db service name is "db"
+$username = "hospital_user";
+$password = "hospital_pass";
 $dbname = "hospital";
 
-require('C:\xampp\htdocs\Hospital\DOCS\fpdf\fpdf.php');  //lightweight PHP library for generating PDF files.
-require 'DOCS/PHPMailer/src/PHPMailer.php';  // main file for email sending
-require 'DOCS/PHPMailer/src/Exception.php';  // handle exception thrown by PHPmailer
-require 'DOCS/PHPMailer/src/SMTP.php';   // functionality for sending emails using an SMTP server
-// require 'vendor/autoload.php';
-require 'C:/xampp/htdocs/Hospital/DOCS/phpqrcode-master/qrlib.php'; // Include the library for QR code
-    
+// Use relative paths inside container
+require __DIR__ . '/DOCS/fpdf/fpdf.php';  
+require __DIR__ . '/DOCS/PHPMailer/src/PHPMailer.php';
+require __DIR__ . '/DOCS/PHPMailer/src/Exception.php';
+require __DIR__ . '/DOCS/PHPMailer/src/SMTP.php';
+require __DIR__ . '/DOCS/phpqrcode-master/qrlib.php'; 
+// __DIR__ is a magic constant in PHP that expands to the directory of the current file (/var/www/html here).
+// This makes it portable (works on Windows and inside Docker).
 
 
 use PHPMailer\PHPMailer\PHPMailer;  // use allows to reference classes
