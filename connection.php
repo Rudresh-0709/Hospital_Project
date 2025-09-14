@@ -5,7 +5,7 @@
     // mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT)       // -- helps catch all possible error
     $servername = "localhost";
     $username = "root";
-    $password = "maria";
+    $password = "";
     $dbname = "hospital";
 
     // create connection

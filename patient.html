@@ -306,54 +306,48 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function labelup() {
-            const labels = document.querySelectorAll("label");
-            labels.forEach((label) => {
-                labels.style.top = "0px";
-            })
-        }
+    function labelup() {
+        const labels = document.querySelectorAll("label");
+        labels.forEach((label) => {
+            label.style.top = "0px";
+        })
+    }
 
-        $(document).ready(function () {
+    $(document).ready(function () {
+        $('#patientForm').on('submit', function (e) {
+            e.preventDefault(); // stop page reload
 
+            // validate name
+            let name = $('#patient_name').val();
+            let patt = /^[A-Za-z\s'-]{2,}$/;
+            if (!patt.test(name.trim())) {
+                alert("Please enter valid name");
+                return false;
+            }
 
-            // This line means: once the HTML page is fully loaded, the function inside will run
-            $('#patientForm').on('submit', function (e) {
-                // form validation
-                name = $('#patient_name').val();
-                patt = /^[A-Za-z\s'-]{2,}$/;
-
-                if (!patt.test(name.trim())) {
-                    alert("Please enter valid name");
-                    return false;
-                }
-
-
-                e.preventDefault(); // Prevents the form from submitting normally (which would reload the page)
-
-                $.ajax({
-                    url: 'patient.php', // The URL where the data will be sent (in this case, 'a.php')
-                    type: 'POST', // The method used to send data (POST is typically used for form submissions)
-                    data: $(this).serialize(), // Takes all the form data and formats it for sending (converts into string format)
-                    success: function (response) {
-                        var final = JSON.parse(response);
-                        // PHP script returns a JSON response
-                        // .parse() converts json string to JS object    -- as JS can easily understand JSON but not PHP
-                        if (final.flag) {
-                            console.log("Response from server:", response);  // Log the response to see what it contains
-                            window.location.href = final.message.trim();
-                        }
-                        else {
-                            $('#message').html(final.message);
-                        }
-                    },
-                    error: function (response) {
-                        // This function runs if there’s an error with the request
-                        $('#message').html("Error: Could not process the AJAX request.", response); // Shows an error message
+            $.ajax({
+                url: 'patient.php',
+                type: 'POST',
+                data: $(this).serialize(),
+                dataType: "json",   // jQuery expects JSON
+                success: function (response) {
+                    if (response.flag) {
+                        console.log("Response from server:", response);
+                        window.location.href = response.message.trim();
+                    } else {
+                        $('#message').html(response.message);
                     }
-                });
+                },
+                error: function (xhr, status, error) {
+                    $('#message').html(
+                        "<p class='invalid'>Error: Could not process the AJAX request.<br>" + error + "</p>"
+                    );
+                }
             });
         });
-    </script>
+    });
+</script>
+
 </body>
 
 </html>

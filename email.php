@@ -11,7 +11,7 @@ require 'DOCS/PHPMailer/src/Exception.php';  // handle exception thrown by PHPma
 require 'DOCS/PHPMailer/src/SMTP.php';   // functionality for sending emails using an SMTP server
 // require 'vendor/autoload.php';
 require 'C:/xampp/htdocs/Hospital/DOCS/phpqrcode-master/qrlib.php'; // Include the library for QR code
-
+    
 
 
 use PHPMailer\PHPMailer\PHPMailer;  // use allows to reference classes
@@ -74,13 +74,13 @@ else{
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication for server
         $mail->Username   = 'checksafehospital@gmail.com';                     //SMTP username
-        // $mail->Password   = 'eijritnbwrbxrfcm';                           //SMTP password (google app password)
-        $mail->Password   = 'ldpqssqltwhqntxp';
+        $mail->Password   = 'etljzoessodlbhtz';                           //SMTP password (google app password)
+        // $mail->Password   = 'ldpqssqltwhqntxp';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;           //Enable implicit TLS encryption
         $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients
-        $mail->setFrom('anujvmehta99@gmail.com', 'checkSafe Hospital'); // sender
+        $mail->setFrom('checksafehospital@gmail.com', 'checkSafe Hospital'); // sender
         $mail->addAddress($recipient_email, $recipient_name); // receiver
         
         //Content
