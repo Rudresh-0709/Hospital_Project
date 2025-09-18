@@ -102,9 +102,7 @@ else{
         $mail->Body    = "
         Welcome patient $pname. <br>
         Admit ID : $aid <br>
-        Your Badges can be accessed from the pdfs below.<br>
-        Each PDF is for one Badge (total 3)<br>
-        <br><br>
+       
         <b>Note:</b> Visiting hours are 9am to 11am and 4pm to 6pm only. We expect your complete cooperation. <br><br>
         <i><h5>For your own convenience and safety, Please refrain from letting unwanted personnel access visiting cards.</h5></i> <br>
         Thank you.<br>
@@ -119,11 +117,17 @@ else{
         // proper error handling done
         foreach ($badge_ids as $index => $baid) {
             try{
+
+                $qrDir = __DIR__ . "/tmp";   // create a tmp folder outside phpqrcode-master
+                if (!file_exists($qrDir)) {
+                    mkdir($qrDir, 0777, true);
+                }
+
                 // Define the path to save the QR code image
-                $qrImagePath = "{$aid}_badge_{$baid}_qr.png";
+                $qrImagePath = $qrDir . "/{$aid}_badge_{$baid}_qr.png";
 
                 // Major mistake i did was put same file_path name for all three iteration (didnt put baid in it)
-                $file_path = "{$aid}_badge_{$baid}_details.pdf";
+                $file_path   = $qrDir . "/{$aid}_badge_{$baid}_details.pdf";
 
 
                 // URL that the QR code will point to
@@ -215,4 +219,10 @@ else{
         // $mail->ErrorInfo
     }
 }
+
+//  <!-- // Your Badges can be accessed from the pdfs below.<br>
+//         // Each PDF is for one Badge (total 3)<br>
+//         <br><br> -->
 ?>
+
+

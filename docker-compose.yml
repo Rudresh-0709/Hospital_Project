@@ -1,9 +1,36 @@
+# To create servers
 services:
-  app:
+  hospital1:
     build: .
-    container_name: hospital
-    ports:
-      - "8080:80"
+    container_name: hospital1
+    hostname: hospital1
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+
+  hospital2:
+    build: .
+    container_name: hospital2
+    hostname: hospital2
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+
+  hospital3:
+    build: .
+    container_name: hospital3
+    hostname: hospital3
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+
+  hospital4:
+    build: .
+    container_name: hospital4
+    hostname: hospital4
     volumes:
       - ./src:/var/www/html
     depends_on:
@@ -23,6 +50,21 @@ services:
     volumes:
       - db_data:/var/lib/mysql
       - ./db-init:/docker-entrypoint-initdb.d
+
+  nginx-lb:
+    image: nginx:latest
+    container_name: nginx-lb
+    ports:
+      - "80:80"
+      - "443:443"        
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro   
+    depends_on:
+      - hospital1
+      - hospital2
+      - hospital3
+      - hospital4
 
 volumes:
   db_data:

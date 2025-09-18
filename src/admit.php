@@ -316,7 +316,7 @@ $patient_id = isset($_GET['patient_id']) ? $_GET['patient_id'] : '';    //fetch 
             <i class="fa-solid fa-house-medical-circle-check"></i>
             <h4>Discharge</h4>
         </a>
-        <a href="index.html" class="navlink">
+        <a href="index.php" class="navlink">
             <i class="fa-solid fa-house"></i>
             <h4>Home</h4>
         </a>

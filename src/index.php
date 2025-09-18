@@ -22,21 +22,14 @@
             display:flex;
             justify-content: center;
             align-items: center;
-            /* background-image: url("Group\ of\ doctors\ standing\ at\ hospital\ building.jpg");
-            background-size:75%;
-            background-repeat: no-repeat;
-            background-position: bottom; */
         }
         .maindiv{
-            /* background-color: rgba(0, 0, 0, 0.219); */
             height:100%;
             width:100%;
             border-radius: 10px;
             display:flex;
             flex-direction: column;
-            
             align-items: center;
-            
         }
         .adiv{
             display:flex;
@@ -54,7 +47,6 @@
             text-shadow: 2px 2px 1px rgba(0, 131, 46, 0.46);
             z-index: 1;
         }
-
         a{
             font-family:"Montserrat Alternates", sans-serif;
             margin-bottom: 2em;
@@ -81,6 +73,26 @@
             width: 80%; 
             position: absolute;    
         }
+.php-output{
+    margin-top: 2em;
+    font-family:"Montserrat Alternates", sans-serif;
+    font-size: 2em; /* bigger */
+    color: #fff;
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    padding: 1em 2em;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 2;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* simple fade-in animation */
+@keyframes fadeIn {
+    0% {opacity:0; transform: translateY(-20px);}
+    100% {opacity:1; transform: translateY(0);}
+}
+
     </style>
 </head>
 
@@ -93,8 +105,14 @@
             <a href="visitor.html" class="visitor">Visitor</a>
             <a href="discharge.html">Discharge</a>
         </div>
-        <img src="web_img/Group of doctors standing at hospital building.jpg" alt="">
 
+<div class="php-output">
+    <?php
+    echo "🏥 Hello from : " . gethostname();
+    ?>
+</div>
+
+        <img src="web_img/Group of doctors standing at hospital building.jpg" alt="">
     </div>
 </body>
 </html>

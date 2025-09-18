@@ -19,6 +19,8 @@ COPY ./src /var/www/html/
 # Enable Apache mod_rewrite (often needed in PHP projects)
 RUN a2enmod rewrite
 
+RUN mkdir -p /var/www/tmp && chmod -R 777 /var/www/tmp
+
 # Copy project files into Apache's default web folder
 COPY src/ /var/www/html/
 
