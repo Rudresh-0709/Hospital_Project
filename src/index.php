@@ -102,7 +102,7 @@
         <div class="adiv">
             <a href="patient.html" > New Patient</a>
             <a href="admit.php" class="patient">Admit</a>
-            <a href="visitor.html" class="visitor">Visitor</a>
+            <!-- <a href="visitor.html" class="visitor">Visitor</a> -->
             <a href="discharge.html">Discharge</a>
         </div>
 
